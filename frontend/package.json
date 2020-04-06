@@ -10,6 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ansi-regex": "^5.0.0",
     "core-js": "^3.6.4",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
