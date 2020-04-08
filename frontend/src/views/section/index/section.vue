@@ -1,7 +1,10 @@
 <template lang="pug">
 extends ../template/section.pug
 block content
-    | content test
+    div.title-slot
+        | title
+    div.content-slot
+        | content
 </template>
 
 <script>
@@ -12,7 +15,7 @@ export default {
     mixins: [mixin_default],
     props: {
         init_headerHeight: {
-            default: 62,
+            default: 60,
         },
     },
 }

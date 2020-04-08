@@ -17,7 +17,7 @@ export default {
     },
     data: function() {
         return {
-            headerHeight: 62,
+            headerHeight: 60,
         };
     },
 }
