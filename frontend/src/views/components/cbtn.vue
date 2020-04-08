@@ -1,0 +1,97 @@
+<template lang="pug">
+div.cbtn(:style="style" @click="onClick" @mouseover="onMouseOver" @mouseleave="onMouseLeave")
+    div.cbtn-message
+        ctxt(:init_color="init_color" :init_message="init_message" :init_fontSize="init_fontSize" :init_fontFamily="init_fontFamily" :init_fontWeight="init_fontWeight")
+</template>
+
+<script>
+import ctxt from './ctxt.vue';
+import Util from './js/util.js';
+
+export default {
+    name: 'cbtn',
+    components: {
+        ctxt,
+    },
+    props: {
+        init_color: {
+            default: '#000000',
+        },
+        init_width: {
+            default: 100,
+        },
+        init_height: {
+            default: 40,
+        },
+        init_message: {
+            default: '',
+        },
+        init_fontSize: {
+            default: 12,
+        },
+        init_fontFamily: {
+            default: '',
+        },
+        init_fontWeight: {
+            default: 400,
+        },
+        init_backgroundColor: {
+            default: '#ffffff',
+        },
+    },
+    watch: {
+        init_width: function() {
+            this.width = this.init_width;
+        },
+        init_height: function() {
+            this.height = this.init_height;
+        },
+        init_backgroundColor: function() {
+            this.backgroundColor = this.init_backgroundColor;
+        },
+    },
+    data: function() {
+        return {
+            width: this.init_width,
+            height: this.init_height,
+            backgroundColor: this.init_backgroundColor,
+        };
+    },
+    computed: {
+        style: function() {
+            return {
+                width: Util.mU(this.width),
+                height: Util.mU(this.height),
+                backgroundColor: this.init_backgroundColor,
+            };
+        },
+    },
+    methods: {
+        onClick: function() {
+            this.$emit('click');
+        },
+        onMouseOver: function() {
+            this.$emit('mouseover');
+        },
+        onMouseLeave: function() {
+            this.$emit('mouseleave');
+        },
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.cbtn {
+    border: none;
+    outline: none;
+    display: flex;
+    transition: .3s;
+
+    &:hover {
+        cursor: pointer;
+    }
+    .cbtn-message {
+        margin: auto;
+    }
+}
+</style>
