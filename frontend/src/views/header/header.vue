@@ -5,15 +5,20 @@ header.guava-header(:style="style")
     div.nav-slot
         cbtn.mr15(init_message="menu1" :init_fontSize="14" :init_backgroundColor="color" @mouseover="() => { color = '#ececec' }" @mouseleave="() => { color = '#ffffff' }")
         cbtn(init_message="menu2" :init_fontSize="14" :init_backgroundColor="color2" @mouseover="() => { color2 = '#ececec' }" @mouseleave="() => { color2 = '#ffffff' }")
+    div.nav-btn-slot
+        cbtn(init_message="slot" :init_fontSize="14" @click="() => { toggle = !toggle; }")
+        cnav(v-if="toggle")
 </template>
 
 <script>
 import cbtn from '../components/cbtn.vue';
 import Util from '../components/js/util.js';
+import cnav from './nav';
 
 export default {
     name: 'guava-header',
     components: {
+        cnav,
         cbtn,
     },
     props: {
@@ -33,6 +38,7 @@ export default {
         return {
             color: '#ffffff',
             color2: '#ffffff',
+            toggle: false,
         };
     },
 }
@@ -50,7 +56,7 @@ export default {
     box-sizing: border-box;
 }
 .logo-slot {
-    margin-left: 60px;
+    margin-left: 10px;
     margin-right: 30px;
 }
 .nav-slot {
@@ -58,6 +64,12 @@ export default {
 }
 .nav-item {
     margin-right: 15px;
+}
+.nav-btn-slot {
+    width: 100px;
+    display: flex;
+    padding: 10px 0;
+    margin-left: auto;
 }
 .mr15 {
     margin-right: 15px;

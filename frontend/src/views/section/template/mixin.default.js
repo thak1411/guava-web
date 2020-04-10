@@ -9,6 +9,11 @@ let mixin = {
             };
         },
     },
+    props: {
+        init_headerHeight: {
+            default: 60,
+        },
+    },
 };
 
 export default mixin;
