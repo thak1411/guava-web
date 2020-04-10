@@ -1,7 +1,7 @@
 <template lang="pug">
 div.cbtn(:style="style" @click="onClick" @mouseover="onMouseOver" @mouseleave="onMouseLeave")
     div.cbtn-message
-        ctxt(:init_color="init_color" :init_message="init_message" :init_fontSize="init_fontSize" :init_fontFamily="init_fontFamily" :init_fontWeight="init_fontWeight")
+        ctxt.centre(:init_color="init_color" :init_message="init_message" :init_fontSize="init_fontSize" :init_fontFamily="init_fontFamily" :init_fontWeight="init_fontWeight")
 </template>
 
 <script>
@@ -84,14 +84,23 @@ export default {
 .cbtn {
     border: none;
     outline: none;
-    display: flex;
     transition: .3s;
+    display: inline-block;
 
     &:hover {
         cursor: pointer;
     }
     .cbtn-message {
-        margin: auto;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .centre {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+                    transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+        }
     }
 }
 </style>
