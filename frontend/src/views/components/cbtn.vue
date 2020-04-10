@@ -98,8 +98,8 @@ export default {
             top: 50%;
             left: 50%;
             position: absolute;
-                    transform: translateX(-50%) translateY(-50%);
             -webkit-transform: translateX(-50%) translateY(-50%);
+                    transform: translateX(-50%) translateY(-50%);
         }
     }
 }
