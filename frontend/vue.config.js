@@ -6,6 +6,7 @@ module.exports = {
             filename: 'index.html',
         },
     },
+    outputDir: '../backend/dist',
     lintOnSave: false,
     filenameHashing: false,
 }
