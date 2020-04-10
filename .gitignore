@@ -24,3 +24,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# credentials file
+local_credentials.js
+credentials.js
