@@ -57,7 +57,7 @@ export default {
     box-sizing: border-box;
 }
 .logo-slot {
-    margin-left: 10px;
+    margin-left: 15px;
     margin-right: 30px;
 }
 button {
