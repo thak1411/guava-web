@@ -3,28 +3,36 @@ header.guava-header(:style="style")
     div.logo-slot
         img(src="../../assets/img/logo.png" alt="logo" height="40")
     div.nav-slot
-        cbtn.mr15(init_message="menu1" :init_fontSize="14" :init_backgroundColor="color" @mouseover="() => { color = '#ececec' }" @mouseleave="() => { color = '#ffffff' }")
-        cbtn(init_message="menu2" :init_fontSize="14" :init_backgroundColor="color2" @mouseover="() => { color2 = '#ececec' }" @mouseleave="() => { color2 = '#ffffff' }")
+        button.mr15.nav-btn
+            ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.0')")
+        button.nav-btn
+            ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.1')")
     div.nav-btn-slot
-        cbtn(init_message="slot" :init_fontSize="14" @click="() => { toggle = !toggle; }")
-        cnav(v-if="toggle")
+        button.nav-user-btn(@click="() => { toggle = !toggle; }") 메뉴바
+        navigation(:init_show="toggle" @click="() => { toggle = false; }")
 </template>
 
 <script>
-import cbtn from '../components/cbtn.vue';
+import navigation from './navigation.vue';
+import ctxt from '../components/ctxt.vue';
 import Util from '../components/js/util.js';
-import cnav from './nav';
 
 export default {
     name: 'guava-header',
     components: {
-        cnav,
-        cbtn,
+        ctxt,
+        navigation,
     },
     props: {
         init_height: {
             default: 60,
         },
+    },
+    data: function() {
+        return {
+            color: [ '#ffffff', '#ffffff' ],
+            toggle: false,
+        };
     },
     computed: {
         style: function() {
@@ -33,13 +41,6 @@ export default {
                 backgroundColor: '#ffffff',
             };
         },
-    },
-    data: function() {
-        return {
-            color: '#ffffff',
-            color2: '#ffffff',
-            toggle: false,
-        };
     },
 }
 </script>
@@ -59,17 +60,37 @@ export default {
     margin-left: 10px;
     margin-right: 30px;
 }
+button {
+    padding: 0;
+}
 .nav-slot {
     display: flex;
-}
-.nav-item {
-    margin-right: 15px;
+    .nav-btn {
+        width: 90px;
+        height: 40px;
+        border: none;
+        outline: none;
+        transition: .3s;
+        background: none;
+        &:hover {
+            cursor: pointer;
+            background: #ececec;
+        }
+    }
 }
 .nav-btn-slot {
-    width: 100px;
+    width: 80px;
+    height: 100%;
     display: flex;
-    padding: 10px 0;
     margin-left: auto;
+    border-left: 1px solid #ececec;
+    .nav-user-btn {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: none;
+    }
 }
 .mr15 {
     margin-right: 15px;

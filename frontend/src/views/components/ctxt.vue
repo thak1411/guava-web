@@ -6,6 +6,12 @@ span.ctxt(:style="style")
 <script>
 import Util from './js/util.js';
 
+/**
+ * <b>문자열을 편하게 쓰려고 만든 컴포넌트</b>
+ * <pre>
+ * 
+ * </pre>
+ */
 export default {
     name: 'ctxt',
     props: {

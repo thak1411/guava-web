@@ -3,5 +3,12 @@
         "ko": "한국어",
         "en": "English"
     },
-    "title": "GUAVA"
+    "title": "GUAVA",
+
+    "header": {
+        "menu": {
+            "0": "MEMBER",
+            "1": "JOIN"
+        }
+    }
 }
