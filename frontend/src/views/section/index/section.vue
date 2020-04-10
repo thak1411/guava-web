@@ -2,9 +2,11 @@
 extends ../template/section.pug
 block content
     div.title-slot
-        | title
+        | 개발하기 너무 힘들어요
     div.content-slot
-        | content
+        | 저좀 살려주세요
+        br
+        | 여기 개발자가 죽어나가고있어요 !!
 </template>
 
 <script>

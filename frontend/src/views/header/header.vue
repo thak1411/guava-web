@@ -46,6 +46,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 768px) {
+    .nav-slot {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .nav-slot {
+        display: flex;
+    }
+}
 .guava-header {
     width: 100%;
     border-bottom: 1px solid #ececec;
@@ -64,7 +74,7 @@ button {
     padding: 0;
 }
 .nav-slot {
-    display: flex;
+    // display: flex;
     .nav-btn {
         width: 90px;
         height: 40px;
