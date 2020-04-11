@@ -3,11 +3,21 @@ div.navigation(:class="show ? '' : 'hide-navigation'" @click.self="onClick")
     div.navigation-tab(:class="show ? '' : 'hide-navigation-tab'")
         div.nav-header
             button.close-btn(@click="onClick") X
+        div.nav-content
+            button.nav-content-btn
+                ctxt(:init_message="$t('header.menu.0')" :init_fontSize="14" init_color="#000000")
+            button.nav-content-btn
+                ctxt(:init_message="$t('header.menu.1')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>
+import ctxt from '../components/ctxt.vue';
+
 export default {
     name: 'navigation',
+    components: {
+        ctxt,
+    },
     props: {
         init_show: {
             default: false,
@@ -70,7 +80,7 @@ export default {
     width: 100%;
     height: 60px;
     display: flex;
-    border-bottom: 1px solid #ececec;
+    border-bottom: 2px solid #000000;
 }
 .close-btn {
     width: 40px;
@@ -83,5 +93,9 @@ export default {
     justify-content: center;
     background-color: #0f0f0f;
     margin: 10px 10px 10px auto;
+}
+.nav-content-btn {
+    width: 100%;
+    margin-top: 8px;
 }
 </style>

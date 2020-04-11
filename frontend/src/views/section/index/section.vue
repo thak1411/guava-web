@@ -1,12 +1,9 @@
 <template lang="pug">
 extends ../template/section.pug
 block content
-    div.title-slot
-        | 개발하기 너무 힘들어요
-    div.content-slot
-        | 저좀 살려주세요
-        br
-        | 여기 개발자가 죽어나가고있어요 !!
+    div.main-slot
+        div.vertical-frame
+            span main img
 </template>
 
 <script>
@@ -20,4 +17,19 @@ export default {
 
 <style lang="scss" scoped>
 @import '../template/style.scss';
+.main-slot {
+    width: 100%;
+    height: 450px;
+    text-align: center;
+    background-color: #4f4f4f;
+}
+.vertical-frame {
+    width: 100%;
+    height: 100%;
+    display: table;
+    span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
 </style>

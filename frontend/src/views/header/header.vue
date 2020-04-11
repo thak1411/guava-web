@@ -4,7 +4,7 @@ header.guava-header(:style="style")
         button.nav-user-btn(@click="() => { toggle = !toggle; }") 메뉴바
         navigation(:init_show="toggle" @click="() => { toggle = false; }")
     div.logo-slot
-        img(src="../../assets/img/logo.png" alt="logo" height="40")
+        img.logo(src="../../assets/img/logo.png" height="40" @click="onClick")
     div.nav-slot
         button.mr15.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.0')")
@@ -42,6 +42,11 @@ export default {
             };
         },
     },
+    methods: {
+        onClick: function() {
+            window.location.href = '/';
+        },
+    },
 }
 </script>
 
@@ -60,6 +65,11 @@ export default {
     }
     .nav-btn-slot {
         display: none;
+    }
+}
+.logo {
+    &:hover {
+        cursor: pointer;
     }
 }
 .guava-header {
@@ -96,7 +106,7 @@ button {
 }
 .nav-btn-slot {
     float: left;
-    width: 80px;
+    width: 30px;
     height: 100%;
     border-right: 1px solid #ececec;
     .nav-user-btn {
