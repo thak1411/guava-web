@@ -95,7 +95,16 @@ export default {
     margin: 10px 10px 10px auto;
 }
 .nav-content-btn {
+    padding: 0;
     width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
     margin-top: 8px;
+    background: none;
+    &:hover {
+        cursor: pointer;
+        background: #ececec;
+    }
 }
 </style>
