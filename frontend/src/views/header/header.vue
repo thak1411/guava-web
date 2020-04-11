@@ -23,11 +23,6 @@ export default {
         ctxt,
         navigation,
     },
-    props: {
-        init_height: {
-            default: 60,
-        },
-    },
     data: function() {
         return {
             color: [ '#ffffff', '#ffffff' ],
@@ -37,7 +32,7 @@ export default {
     computed: {
         style: function() {
             return {
-                height: Util.mU(this.init_height),
+                // height: Util.mU(this.init_height),
                 backgroundColor: '#ffffff',
             };
         },
@@ -74,6 +69,7 @@ export default {
 }
 .guava-header {
     width: 100%;
+    height: 60px;
     border-bottom: 1px solid #ececec;
 }
 .logo-slot, .nav-slot {
@@ -106,7 +102,7 @@ button {
 }
 .nav-btn-slot {
     float: left;
-    width: 30px;
+    width: 45px;
     height: 100%;
     border-right: 1px solid #ececec;
     .nav-user-btn {

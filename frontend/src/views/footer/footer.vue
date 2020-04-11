@@ -1,26 +1,26 @@
 <template lang="pug">
-section.index-section
-    div.main-slot
-        div.vertical-frame
-            span main img
+footer.guava-footer
+    div.vertical-frame
+        span guava footer
 </template>
 
 <script>
 export default {
-    name: 'index-section',
+    name: 'guava-footer',
 }
 </script>
 
 <style lang="scss" scoped>
-.main-slot {
+.guava-footer {
     width: 100%;
-    height: 450px;
-    background-color: #ececec;
+    height: 200px;
+    background-color: #4f4f4f;
 }
 .vertical-frame {
     width: 100%;
     height: 100%;
     display: table;
+    color: #ececec;
     text-align: center;
     span {
         display: table-cell;

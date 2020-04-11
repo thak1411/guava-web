@@ -1,24 +1,22 @@
 <template lang="pug">
 div.index-root
-    guava-header(:init_height="headerHeight")
-    guava-section(:init_headerHeight="headerHeight")
+    guava-header
+    guava-section
+    guava-footer
 </template>
 
 <script>
 import Util from '../../views/components/js/util.js';
 import GuavaHeader from '../../views/header/header.vue';
+import GuavaFooter from '../../views/footer/footer.vue';
 import GuavaSection from '../../views/section/index/section.vue';
 
 export default {
     name: 'index-root',
     components: {
         GuavaHeader,
+        GuavaFooter,
         GuavaSection,
-    },
-    data: function() {
-        return {
-            headerHeight: 60,
-        };
     },
 }
 </script>
@@ -27,5 +25,6 @@ export default {
 .index-root {
     width: 100%;
     height: 100%;
+    overflow: auto;
 }
 </style>
