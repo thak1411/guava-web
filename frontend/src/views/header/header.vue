@@ -1,5 +1,8 @@
 <template lang="pug">
 header.guava-header(:style="style")
+    div.nav-btn-slot
+        button.nav-user-btn(@click="() => { toggle = !toggle; }") 메뉴바
+        navigation(:init_show="toggle" @click="() => { toggle = false; }")
     div.logo-slot
         img(src="../../assets/img/logo.png" alt="logo" height="40")
     div.nav-slot
@@ -7,9 +10,6 @@ header.guava-header(:style="style")
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.0')")
         button.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.1')")
-    div.nav-btn-slot
-        button.nav-user-btn(@click="() => { toggle = !toggle; }") 메뉴바
-        navigation(:init_show="toggle" @click="() => { toggle = false; }")
 </template>
 
 <script>
@@ -50,10 +50,16 @@ export default {
     .nav-slot {
         display: none;
     }
+    .nav-btn-slot {
+        display:  block;
+    }
 }
 @media (min-width: 768px) {
     .nav-slot {
         display: flex;
+    }
+    .nav-btn-slot {
+        display: none;
     }
 }
 .guava-header {
@@ -89,11 +95,10 @@ button {
     }
 }
 .nav-btn-slot {
+    float: left;
     width: 80px;
     height: 100%;
-    display: flex;
-    margin-left: auto;
-    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
     .nav-user-btn {
         width: 100%;
         height: 100%;
