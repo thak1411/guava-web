@@ -38,11 +38,11 @@ export default {
         init_message: function() {
             this.message = this.init_message;
         },
-        init_fontFamily: function() {
-            this.fontFamily = this.init_fontFamily;
-        },
         init_fontSize: function() {
             this.fontSize = this.init_fontSize;
+        },
+        init_fontFamily: function() {
+            this.fontFamily = this.init_fontFamily;
         },
         init_fontWeight: function() {
             this.fontWeight = this.init_fontWeight;

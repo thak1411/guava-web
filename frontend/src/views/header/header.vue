@@ -1,8 +1,8 @@
 <template lang="pug">
 header.guava-header(:style="style")
     div.nav-btn-slot
-        button.nav-user-btn(@click="() => { toggle = !toggle; }") 메뉴바
-        navigation(:init_show="toggle" @click="() => { toggle = false; }")
+        button.nav-user-btn(@click="() => { nToggle = !nToggle; }") 메뉴바
+        navigation(:init_show="nToggle" @click="() => { nToggle = false; }")
     div.logo-slot
         img.logo(src="../../assets/img/logo.png" height="40" @click="onClick")
     div.nav-slot
@@ -10,9 +10,13 @@ header.guava-header(:style="style")
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.0')")
         button.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.1')")
+    div.user-slot
+        button.user-btn(@click="() => { dToggle = !dToggle }") 유저 이름
+        dropdown(:init_show="dToggle")
 </template>
 
 <script>
+import dropdown from './dropdown.vue';
 import navigation from './navigation.vue';
 import ctxt from '../components/ctxt.vue';
 import Util from '../components/js/util.js';
@@ -21,12 +25,14 @@ export default {
     name: 'guava-header',
     components: {
         ctxt,
+        dropdown,
         navigation,
     },
     data: function() {
         return {
             color: [ '#ffffff', '#ffffff' ],
-            toggle: false,
+            nToggle: false,
+            dToggle: false,
         };
     },
     computed: {
@@ -111,6 +117,28 @@ button {
         border: none;
         outline: none;
         background: none;
+    }
+}
+.user-slot {
+    width: 150px;
+    height: 100%;
+    // display: flex;
+    margin-left: auto;
+    position: relative;
+    border-left: 1px solid #ececec;
+    .user-btn {
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        -webkit-transition: all .3s;
+                transition: all .3s;
+        &:hover {
+            cursor: pointer;
+            background-color: #ececec;
+        }
     }
 }
 .mr15 {
