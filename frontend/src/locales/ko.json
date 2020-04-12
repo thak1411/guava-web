@@ -7,8 +7,13 @@
     
     "header": {
         "menu": {
-            "0": "멤버소개",
-            "1": "가입신청"
+            "join": "가입신청",
+            "introduction": "멤버소개"
+        },
+        "dropdown": {
+            "lang": "언어 설정(Language)",
+            "login": "로그인",
+            "logout": "로그아웃"
         }
     }
 }

@@ -12,6 +12,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index-section {
+    width: 100%;
+}
 .main-slot {
     width: 100%;
     height: 450px;

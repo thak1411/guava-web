@@ -5,9 +5,9 @@ div.navigation(:class="show ? '' : 'hide-navigation'" @click.self="onClick")
             button.close-btn(@click="onClick") X
         div.nav-content
             button.nav-content-btn
-                ctxt(:init_message="$t('header.menu.0')" :init_fontSize="14" init_color="#000000")
+                ctxt(:init_message="$t('header.menu.introduction')" :init_fontSize="14" init_color="#000000")
             button.nav-content-btn
-                ctxt(:init_message="$t('header.menu.1')" :init_fontSize="14" init_color="#000000")
+                ctxt(:init_message="$t('header.menu.join')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>

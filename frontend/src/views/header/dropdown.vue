@@ -2,11 +2,11 @@
 div.header-dropdown(:class="show ? '' : 'header-dropdown-hide'")
     ul
         li
-            button
-                ctxt(:init_message="$t('menu1')" :init_fontSize="14" init_color="#000000")
+            button(@click="onClickLang")
+                ctxt(:init_message="$t('header.dropdown.lang')" :init_fontSize="14" init_color="#000000")
         li
-            button
-                ctxt(:init_message="$t('menu2')" :init_fontSize="14" init_color="#000000")
+            button(@click="onClickLogin")
+                ctxt(:init_message="$t('header.dropdown.login')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>
@@ -31,6 +31,14 @@ export default {
         return {
             show: this.init_show,
         };
+    },
+    methods: {
+        onClickLang: function() {
+            this.$store.commit('setModalType', 'lang');
+        },
+        onClickLogin: function() {
+            window.location.href = '/login';
+        },
     },
 }
 </script>

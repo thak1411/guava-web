@@ -1,7 +1,7 @@
 <template lang="pug">
-div.index-root
+div.login-root
     guava-header
-    guava-section
+    login-section
     guava-footer
     global-components
 </template>
@@ -10,22 +10,22 @@ div.index-root
 import Util from '../../views/components/js/util.js';
 import GuavaHeader from '../../views/header/header.vue';
 import GuavaFooter from '../../views/footer/footer.vue';
-import GuavaSection from '../../views/section/index/section.vue';
+import LoginSection from '../../views/section/login/section.vue';
 import GlobalComponents from '../../views/components/global-components.vue';
 
 export default {
-    name: 'index-root',
+    name: 'login-root',
     components: {
         GuavaHeader,
         GuavaFooter,
-        GuavaSection,
+        LoginSection,
         GlobalComponents,
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.index-root {
+.login-root {
     width: 100%;
     height: 100%;
     overflow: auto;

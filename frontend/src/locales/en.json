@@ -7,8 +7,13 @@
 
     "header": {
         "menu": {
-            "0": "MEMBER",
-            "1": "JOIN"
+            "join": "JOIN",
+            "introduction": "MEMBER"
+        },
+        "dropdown": {
+            "lang": "언어 설정(Language)",
+            "login": "log in",
+            "logout": "log out"
         }
     }
 }
