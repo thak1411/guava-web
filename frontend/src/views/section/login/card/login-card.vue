@@ -2,8 +2,8 @@
 div.login-card
     ctxt.card-title(:init_message="$t('login.title')" init_color="#000000" :init_fontSize="18")
     div.seperate-line
-    input.card-input(v-model="id" :placeholder="$t('login.id')")
-    input.card-input(v-model="password" :placeholder="$t('login.password')")
+    input.card-input(type="text" v-model="id" :placeholder="$t('login.id')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="password" v-model="password" :placeholder="$t('login.password')" @keypress.enter="onSubmit" maxlength="16")
     button.card-login(@click="onSubmit")
         ctxt(:init_message="$t('login.submit')" init_color="#ffffff" :init_fontSize="16")
     div.seperate-line.mtb10
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         onSubmit: function() {
-            
+            alert('로그인 실패!');
         },
     },
 }
