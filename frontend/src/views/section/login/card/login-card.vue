@@ -11,6 +11,7 @@ div.login-card
 </template>
 
 <script>
+import axios from 'axios';
 import ctxt from '../../../components/ctxt.vue';
 
 export default {
@@ -26,7 +27,14 @@ export default {
     },
     methods: {
         onSubmit: function() {
-            alert('로그인 실패!');
+            axios.get('/api/user/thak1411@gmail.com')
+            .then(res => {
+                alert(res.data.email);
+            })
+            .catch(e => {
+                console.log('error: ', e);
+            });
+            // alert('로그인 실패!');
         },
     },
 }

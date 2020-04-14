@@ -14,4 +14,12 @@ module.exports = {
     outputDir: '../backend/dist',
     lintOnSave: false,
     filenameHashing: false,
+
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+            },
+        },
+    },
 }
