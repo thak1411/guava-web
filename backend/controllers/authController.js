@@ -1,6 +1,8 @@
 const baseController = require('./baseController.js');
 
-let controller = new baseController();
+let controller = new baseController({
+    db: true,
+});
 
 controller.login = function(req, res, next) {
     const data = {
