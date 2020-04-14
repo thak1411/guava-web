@@ -15,5 +15,11 @@
             "login": "log in",
             "logout": "log out"
         }
+    },
+    "login": {
+        "title": "LOG IN",
+        "id": "ID",
+        "password": "PASSWORD",
+        "submit": "LOG IN"
     }
 }
