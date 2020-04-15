@@ -10,6 +10,11 @@ module.exports = {
             template: './public/index.html',
             filename: 'login.html',
         },
+        join: {
+            entry: './src/pages/join/main.js',
+            template: './public/index.html',
+            filename: 'join.html',
+        },
     },
     outputDir: '../backend/dist',
     lintOnSave: false,

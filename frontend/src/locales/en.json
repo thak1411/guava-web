@@ -12,6 +12,7 @@
         },
         "dropdown": {
             "lang": "언어 설정(Language)",
+            "join": "sign up",
             "login": "log in",
             "logout": "log out"
         }
@@ -21,5 +22,11 @@
         "id": "ID",
         "password": "PASSWORD",
         "submit": "LOG IN"
+    },
+    "join": {
+        "title": "SIGN UP",
+        "id": "ID",
+        "password": "PASSWORD",
+        "submit": "SIGN UP"
     }
 }

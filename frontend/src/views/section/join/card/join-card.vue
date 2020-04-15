@@ -1,11 +1,11 @@
 <template lang="pug">
-div.login-card
-    ctxt.card-title(:init_message="$t('login.title')" init_color="#000000" :init_fontSize="18")
+div.join-card
+    ctxt.card-title(:init_message="$t('join.title')" init_color="#000000" :init_fontSize="18")
     div.seperate-line
-    input.card-input(type="text" v-model="id" :placeholder="$t('login.id')" @keypress.enter="onSubmit" maxlength="16")
-    input.card-input(type="password" v-model="password" :placeholder="$t('login.password')" @keypress.enter="onSubmit" maxlength="16")
-    button.card-login(@click="onSubmit")
-        ctxt(:init_message="$t('login.submit')" init_color="#ffffff" :init_fontSize="16")
+    input.card-input(type="text" v-model="id" :placeholder="$t('join.id')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="password" v-model="password" :placeholder="$t('join.password')" @keypress.enter="onSubmit" maxlength="16")
+    button.card-join(@click="onSubmit")
+        ctxt(:init_message="$t('join.submit')" init_color="#ffffff" :init_fontSize="16")
     div.seperate-line.mtb10
     ctxt(init_message="비밀번호 잊어버리면 알아서 찾으세요" init_color="#000000" :init_fontSize="16")
 </template>
@@ -15,7 +15,7 @@ import axios from 'axios';
 import ctxt from '../../../components/ctxt.vue';
 
 export default {
-    name: 'login-card',
+    name: 'join-card',
     components: {
         ctxt,
     },
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login-card {
+.join-card {
     width: 300px;
     height: 300px;
     display: flex;
@@ -67,7 +67,7 @@ export default {
     display: inline-block;
     border: 1px solid #ececec;
 }
-.card-login {
+.card-join {
     width: 100%;
     height: 26px;
     border: none;

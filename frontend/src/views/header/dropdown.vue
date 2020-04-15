@@ -7,6 +7,9 @@ div.header-dropdown(:class="show ? '' : 'header-dropdown-hide'")
         li
             button(@click="onClickLogin")
                 ctxt(:init_message="$t('header.dropdown.login')" :init_fontSize="14" init_color="#000000")
+        li
+            button(@click="onClickJoin")
+                ctxt(:init_message="$t('header.dropdown.join')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>
@@ -39,6 +42,9 @@ export default {
         onClickLogin: function() {
             window.location.href = '/login';
         },
+        onClickJoin: function() {
+            window.location.href = '/join';
+        },
     },
 }
 </script>
@@ -46,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 .header-dropdown {
     width: 100%;
-    height: 90px;
+    height: 135px;
     position: absolute;
     border: 1px solid #dedede;
     background-color: #ffffff;
