@@ -28,6 +28,7 @@ export default {
 .login-root {
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 </style>

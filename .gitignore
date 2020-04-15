@@ -28,3 +28,9 @@ yarn-error.log*
 # credentials file
 local_credentials.js
 credentials.js
+
+# sql file
+mysql-setup
+*.sql
+*.mwb
+*.bak

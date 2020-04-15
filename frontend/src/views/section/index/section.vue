@@ -2,7 +2,7 @@
 section.index-section
     div.main-slot
         div.vertical-frame
-            span main img
+            img(src="../../../assets/img/guabono.png" height="400")
 </template>
 
 <script>
