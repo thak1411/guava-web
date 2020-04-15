@@ -1,12 +1,13 @@
 const mysql = require('mysql');
 const config = require('../config');
 const pool = mysql.createPool({
-    host               : config.database.user.host,
-    user               : config.database.user.user,
-    password           : config.database.user.password,
-    connectionLimit    : config.database.user.connectionLimit,
-    waitForConnections : config.database.user.waitForConnections,
-    multipleStatements : config.database.user.multipleStatements,
+    host               : config.database.host,
+    user               : config.database.user,
+    password           : config.database.password,
+    database           : config.database.database,
+    connectionLimit    : config.database.connectionLimit,
+    waitForConnections : config.database.waitForConnections,
+    multipleStatements : config.database.multipleStatements,
 });
 
 module.exports = {
