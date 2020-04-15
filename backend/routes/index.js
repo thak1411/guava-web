@@ -17,6 +17,13 @@ router.get('/login', function(req, res, next) {
 });
 
 /**
+ * <b> Get Join Page </b>
+ */
+router.get('/join', function(req, res, next) {
+    res.sendfile(path.join(__dirname, '..', 'dist', 'join.html'));
+});
+
+/**
  * <b> Load Api </b>
  */
 router.use("/api", apiRoutes);
