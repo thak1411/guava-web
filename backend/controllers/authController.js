@@ -7,10 +7,26 @@ let controller = new baseController({
 
 controller.login = function(req, res, next) {
     const { username, password } = req.body;
-    res.json({
-        username,
-        password,
-    });
+
+    const search = user => {
+        if (!user) throw new Error('id fail');
+        else if (password != user.password) throw new Error('password fail');
+    };
+
+    const response = () => {
+        res.json({message: 'sucess'});
+    };
+
+    const onError = error => {
+        res.json({
+            error: error.message,
+        });
+    }
+
+    User.findUserByUsername(username)
+    .then(search)
+    .then(response)
+    .catch(onError);
 }
 
 controller.join = function (req, res, next) {
@@ -38,7 +54,7 @@ controller.join = function (req, res, next) {
     };
 
     const onError = error => {
-        res.status(error.status).json({
+        res.json({
             error: error.message,
         });
     };
