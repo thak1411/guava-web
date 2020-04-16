@@ -18,29 +18,31 @@ function User({
     if (created) {
         this.created = created;
     } else {
-        this.created = new Date().toString();
+        this.created = new Date().toISOString().slice(0, 19).replace('T', ' ');
     }
 }
 
 function findUserByUsername(username) {
     return new Promise(function(resolved, rejected) {
-        dbModel.getConnection()
-        .then(context => {
-            context.connection.query(`select * from guava_user_table where username=${username}`, function(err, row) {
+        const search = context => {
+            context.connection.query(`select * from guava_user_table where username='${username}'`, function(err, row) {
                 context.connection.release();
                 if (err) {
                     const error = new Error(err);
                     error.status = 500;
                     return rejected(error);
                 }
-                return resolved({
-                    user: row[0],
-                });
+                return resolved(row[0]);
             });
-        })
-        .catch(error => {
+        };
+
+        const onError = error => {
             return rejected(error);
-        });
+        };
+
+        dbModel.getConnection()
+        .then(search)
+        .catch(onError);
     });
 }
 
@@ -48,7 +50,7 @@ function createUser(user) {
     return new Promise(function(resolved, rejected) {
         const create = context => {
             context.connection.query(`insert into guava_user_table(username, password, student_id, name, nickname, created, permission_level)
-                values(${user.username}, ${user.password}, ${user.student_id}, ${user.name}, ${user.nickname}, ${user.created}, ${user.permission_level})`, function(err, row) {
+                values('${user.username}', '${user.password}', ${user.student_id}, '${user.name}', '${user.nickname}', '${user.created}', ${user.permission_level})`, function(err, row) {
                 context.connection.release();
                 if (err) {
                     const error = new Error(err);

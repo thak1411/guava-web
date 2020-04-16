@@ -1,15 +1,15 @@
 <template lang="pug">
 div#app
-    login-root
+    join-root
 </template>
 
 <script>
-import LoginRoot from './Root.vue';
+import JoinRoot from './Root.vue';
 
 export default {
     name: 'app',
     components: {
-        LoginRoot,
+        JoinRoot,
     },
 }
 </script>

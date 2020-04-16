@@ -19,13 +19,13 @@
     },
     "login": {
         "title": "로그인",
-        "id": "아이디 입력",
+        "username": "아이디 입력",
         "password": "비밀번호 입력",
         "submit": "로그인"
     },
     "join": {
         "title": "회원 가입",
-        "id": "아이디 입력",
+        "username": "아이디 입력",
         "name": "이름 입력",
         "submit": "회원 가입",
         "password": "비밀번호 입력",

@@ -6,7 +6,11 @@ let controller = new baseController({
 });
 
 controller.login = function(req, res, next) {
-    
+    const { username, password } = req.body;
+    res.json({
+        username,
+        password,
+    });
 }
 
 controller.join = function (req, res, next) {
@@ -34,7 +38,6 @@ controller.join = function (req, res, next) {
     };
 
     const onError = error => {
-        console.log('err!', error);
         res.status(error.status).json({
             error: error.message,
         });

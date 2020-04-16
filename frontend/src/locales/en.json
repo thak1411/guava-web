@@ -19,13 +19,13 @@
     },
     "login": {
         "title": "LOG IN",
-        "id": "ID",
+        "username": "ID",
         "password": "PASSWORD",
         "submit": "LOG IN"
     },
     "join": {
         "title": "SIGN UP",
-        "id": "ID",
+        "username": "ID",
         "name": "NAME",
         "submit": "SIGN UP",
         "password": "PASSWORD",

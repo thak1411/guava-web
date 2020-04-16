@@ -2,7 +2,7 @@
 div.join-card
     ctxt.card-title(:init_message="$t('join.title')" init_color="#000000" :init_fontSize="18")
     div.seperate-line
-    input.card-input(type="text" v-model="id" :placeholder="$t('join.id')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="text" v-model="username" :placeholder="$t('join.username')" @keypress.enter="onSubmit" maxlength="16")
     input.card-input(type="password" v-model="password" :placeholder="$t('join.password')" @keypress.enter="onSubmit" maxlength="16")
     input.card-input(type="password" v-model="cfmPassword" :placeholder="$t('join.confirm-password')" @keypress.enter="onSubmit" maxlength="16")
     div.seperate-line.mt10
@@ -26,8 +26,8 @@ export default {
     },
     data: function() {
         return {
-            id: '',
             name: '',
+            username: '',
             password: '',
             nickname: '',
             studentId: '',
@@ -36,9 +36,16 @@ export default {
     },
     methods: {
         onSubmit: function() {
-            axios.get('/api/user/test')
+            axios.post('/api/user/join', {
+                name: this.name,
+                username: this.username,
+                password: this.password,
+                nickname: this.nickname,
+                student_id: this.studentId,
+            })
             .then(res => {
-                
+                console.log(res);
+                alert(res.data.message);
             })
             .catch(e => {
                 console.log('error: ', e);
