@@ -26,7 +26,11 @@
     "join": {
         "title": "회원 가입",
         "id": "아이디 입력",
+        "name": "이름 입력",
+        "submit": "회원 가입",
         "password": "비밀번호 입력",
-        "submit": "회원 가입"
+        "nickname": "닉네임 입력",
+        "student-id": "학번 입력",
+        "confirm-password": "비밀번호 재입력"
     }
 }

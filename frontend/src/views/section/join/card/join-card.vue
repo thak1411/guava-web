@@ -4,6 +4,11 @@ div.join-card
     div.seperate-line
     input.card-input(type="text" v-model="id" :placeholder="$t('join.id')" @keypress.enter="onSubmit" maxlength="16")
     input.card-input(type="password" v-model="password" :placeholder="$t('join.password')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="password" v-model="cfmPassword" :placeholder="$t('join.confirm-password')" @keypress.enter="onSubmit" maxlength="16")
+    div.seperate-line.mt10
+    input.card-input(type="text" v-model="name" :placeholder="$t('join.name')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="text" v-model="studentId" :placeholder="$t('join.student-id')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="text" v-model="nickname" :placeholder="$t('join.nickname')" @keypress.enter="onSubmit" maxlength="16")
     button.card-join(@click="onSubmit")
         ctxt(:init_message="$t('join.submit')" init_color="#ffffff" :init_fontSize="16")
     div.seperate-line.mtb10
@@ -22,7 +27,11 @@ export default {
     data: function() {
         return {
             id: '',
+            name: '',
             password: '',
+            nickname: '',
+            studentId: '',
+            cfmPassword: '',
         };
     },
     methods: {
@@ -42,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .join-card {
     width: 300px;
-    height: 300px;
+    height: 400px;
     display: flex;
     padding: 20px;
     margin-left: auto;
@@ -84,5 +93,8 @@ export default {
 .mtb10 {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.mt10 {
+    margin-top: 10px;
 }
 </style>

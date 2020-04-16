@@ -26,7 +26,11 @@
     "join": {
         "title": "SIGN UP",
         "id": "ID",
+        "name": "NAME",
+        "submit": "SIGN UP",
         "password": "PASSWORD",
-        "submit": "SIGN UP"
+        "nickname": "NICKNAME",
+        "student-id": "STUDENT ID",
+        "confirm-password": "CONFIRM PASSWORD"
     }
 }

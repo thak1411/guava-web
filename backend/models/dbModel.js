@@ -10,17 +10,19 @@ const pool = mysql.createPool({
     multipleStatements : config.database.multipleStatements,
 });
 
+function getConnection() {
+    return new Promise(function(resolved, rejected) {
+        pool.getConnection(function(err, connection) {
+            if (err) {
+                let error = new Error(err);
+                error.status = 500;
+                return rejected(error);
+            }
+            return resolved({ connection: connection });
+        });
+    });
+}
+
 module.exports = {
-    getConnection: function() {
-        return new Promise(function(resolved, rejected) {
-			pool.getConnection(function(err, connection) {
-				if (err) {
-					let error = new Error(err);
-					error.status = 500;
-					return rejected(error);
-				}
-				return resolved({ connection: connection });
-			});
-		});
-    },
+    getConnection,
 };
