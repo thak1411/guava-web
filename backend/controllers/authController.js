@@ -24,7 +24,11 @@ controller.login = function(req, res, next) {
                 jwt.sign({
                     id: user.id,
                     exp: expired,
+                    name: user.name,
+                    created: user.created,
                     username: user.username,
+                    nickname: user.nickname,
+                    student_id: user.student_id,
                     permission_level: user.permission_level,
                 }, secret, {
                     issuer: self.config.jwt.issuer,
