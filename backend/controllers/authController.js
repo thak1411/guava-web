@@ -11,13 +11,11 @@ const self = controller;
 
 controller.login = function(req, res, next) {
     const { username, password } = req.body;
-    let hashPassword;
     const check = user => {
         if (!user) throw new Error('id fail');
         return bcrypt.hash(password, user.salt)
         .then(hash => {
-            hashPassword = hash;
-            if (user.password != hashPassword) throw new Error('password fail');
+            if (user.password != hash) throw new Error('password fail');
         })
         .then(() => {
             const p = new Promise((resolve, reject) => {
