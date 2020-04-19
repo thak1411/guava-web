@@ -1,19 +1,21 @@
 const dbModel = require('./dbModel.js');
 
 function User({
+    name = null,
+    salt = null,
+    created = null,
     username = null,
+    nickname = null,
     password = null,
     student_id = null,
-    name = null,
-    nickname = null,
-    created = null,
     permission_level = 0,
 }) {
+    this.name = name;
+    this.salt = salt;
     this.username = username;
+    this.nickname = nickname;
     this.password = password;
     this.student_id = student_id;
-    this.name = name;
-    this.nickname = nickname;
     this.permission_level = permission_level;
     if (created) {
         this.created = created;
@@ -49,8 +51,19 @@ function findUserByUsername(username) {
 function createUser(user) {
     return new Promise(function(resolved, rejected) {
         const create = context => {
-            context.connection.query(`insert into guava_user_table(username, password, student_id, name, nickname, created, permission_level)
-                values('${user.username}', '${user.password}', ${user.student_id}, '${user.name}', '${user.nickname}', '${user.created}', ${user.permission_level})`, function(err, row) {
+            const queryString = `INSERT INTO guava_user_table SET
+                username = ?,
+                password = ?,
+                student_id = ?,
+                name = ?,
+                nickname = ?,
+                created = ?,
+                permission_level = ?,
+                salt = ?`;
+                
+            const queryValue = [user.username, user.password, user.student_id, user.name, user.nickname, user.created, user.permission_level, user.salt];
+
+            context.connection.query(queryString, queryValue, function(err, row) {
                 context.connection.release();
                 if (err) {
                     const error = new Error(err);

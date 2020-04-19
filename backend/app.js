@@ -1,6 +1,7 @@
 const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
+const config = require('./config');
 const express = require('express');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
@@ -11,6 +12,7 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
+app.set('jwt-secret', config.jwt_secret);
 
 app.use(cors());
 app.use(logger('dev'));
