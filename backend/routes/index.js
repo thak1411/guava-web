@@ -28,8 +28,7 @@ router.get('/join', function(req, res, next) {
  * <b> Get Log Out </b>
  */
 router.get('/logout', function(req, res, next) {
-    console.log('logOUTTTTTT!!!!!');
-    res.clearCookie(config.cookie.session);
+    res.clearCookie(config.cookie.session, { path: '/' });
     res.redirect("/");
 });
 
