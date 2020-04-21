@@ -10,6 +10,9 @@ div.header-dropdown(:class="show ? '' : 'header-dropdown-hide'")
         li
             button(@click="onClickJoin")
                 ctxt(:init_message="$t('header.dropdown.join')" :init_fontSize="14" init_color="#000000")
+        li
+            button(@click="onClickLogout")
+                ctxt(:init_message="$t('header.dropdown.logout')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>
@@ -45,6 +48,9 @@ export default {
         onClickJoin: function() {
             window.location.href = '/join';
         },
+        onClickLogout: function() {
+            window.location.href = '/logout';
+        },
     },
 }
 </script>
@@ -52,7 +58,7 @@ export default {
 <style lang="scss" scoped>
 .header-dropdown {
     width: 100%;
-    height: 135px;
+    height: 180px;
     position: absolute;
     border: 1px solid #dedede;
     background-color: #ffffff;

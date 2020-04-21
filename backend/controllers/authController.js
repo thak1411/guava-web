@@ -76,9 +76,9 @@ controller.login = function(req, res, next) {
     .then(saveCookie)
     .then(response)
     .catch(onError);
-}
+};
 
-controller.join = function (req, res, next) {
+controller.join = function(req, res, next) {
     const { username, password, student_id, name, nickname } = req.body;
     let newUser = new User.User({
         name,
@@ -125,6 +125,6 @@ controller.join = function (req, res, next) {
         .catch(onError);
     })
     .catch(onError);
-}
+};
 
 module.exports = controller;
