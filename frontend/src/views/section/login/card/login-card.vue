@@ -32,10 +32,14 @@ export default {
                 password: this.password,
             })
             .then(res => {
-                console.log(res);
+                window.location.href = '/';
             })
             .catch(e => {
-                console.log('error: ', e);
+                switch (e.response.status) {
+                case 401: default:
+                    alert('로그인 실패');
+                    break;
+                }
             });
         },
     },

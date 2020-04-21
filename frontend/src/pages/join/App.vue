@@ -5,9 +5,11 @@ div#app
 
 <script>
 import JoinRoot from './Root.vue';
+import mixin_default from '../mixins/mixin_default.js';
 
 export default {
     name: 'app',
+    mixins: [mixin_default],
     components: {
         JoinRoot,
     },
