@@ -27,7 +27,7 @@ function User({
 function findUserByUsername(username) {
     return new Promise(function(resolved, rejected) {
         const search = context => {
-            context.connection.query(`select * from guava_user_table where username='${username}'`, function(err, row) {
+            context.connection.query(`SELECT * FROM guava_user_table WHERE username='${username}'`, function(err, row) {
                 context.connection.release();
                 if (err) {
                     const error = new Error(err);
@@ -48,6 +48,31 @@ function findUserByUsername(username) {
     });
 }
 
+function getAllUserList() {
+    return new Promise(function(resolved, rejected) {
+        const queryString = `SELECT * from guava_user_table`;
+        const getList = context => {
+            context.connection.query(queryString, '', function(err, row) {
+                context.connection.release();
+                if (err) {
+                    const error = new Error(err);
+                    error.status = 500;
+                    return rejected(error);
+                }
+                return resolved({
+                    userList: row,
+                });
+            });
+        };
+        const onError = error => {
+            return rejected(error);
+        };
+        dbModel.getConnection()
+        .then(getList)
+        .catch(onError);
+    });
+}
+
 function createUser(user) {
     return new Promise(function(resolved, rejected) {
         const create = context => {
@@ -60,7 +85,7 @@ function createUser(user) {
                 created = ?,
                 permission_level = ?,
                 salt = ?`;
-                
+
             const queryValue = [user.username, user.password, user.student_id, user.name, user.nickname, user.created, user.permission_level, user.salt];
 
             context.connection.query(queryString, queryValue, function(err, row) {
@@ -89,5 +114,6 @@ function createUser(user) {
 module.exports = {
     User,
     createUser,
+    getAllUserList,
     findUserByUsername,
 }

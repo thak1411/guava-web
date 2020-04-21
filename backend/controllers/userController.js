@@ -1,7 +1,7 @@
 const baseController = require('./baseController.js');
 
 let controller = new baseController({
-    db: false,
+    db: true,
 });
 
 const self = controller;
@@ -16,6 +16,10 @@ controller.info = function (req, res, next) {
         student_id: req.token.student_id,
         permission_level: req.token.permission_level,
     });
+};
+
+controller.userList = function(req, res, next) {
+    
 };
 
 module.exports = controller;
