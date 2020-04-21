@@ -28,7 +28,7 @@ router.get('/join', function(req, res, next) {
  * <b> Get Log Out </b>
  */
 router.get('/logout', function(req, res, next) {
-    res.clearCookie(config.cookie.session, { path: '/' });
+    res.clearCookie(config.cookie.session, { path: '/', domain: 'guava-cse.tk' });
     res.redirect("/");
 });
 
