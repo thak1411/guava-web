@@ -43,7 +43,11 @@ controller.login = function(req, res, next) {
                     subject: self.config.jwt.subject,
                     algorithm: self.config.jwt.algorithm,
                 }, (err, token) => {
-                    if (err) reject(err);
+                    if (err) {
+                        const error = new Error(err);
+                        error.status = 401;
+                        reject(err);
+                    }
                     resolve(token);
                 });
             });
@@ -66,7 +70,7 @@ controller.login = function(req, res, next) {
     };
 
     const onError = error => {
-        res.status(error.status).json({
+        res.status(error.status || 500).json({
             error: error.message,
         });
     };
