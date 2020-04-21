@@ -12,10 +12,18 @@ const self = controller;
 controller.login = function(req, res, next) {
     const { username, password } = req.body;
     const check = user => {
-        if (!user) throw new Error('id fail');
+        if (!user) {
+            const error = new Error('id fail');
+            error.status = 401;
+            throw error;
+        }
         return bcrypt.hash(password, user.salt)
         .then(hash => {
-            if (user.password != hash) throw new Error('password fail');
+            if (user.password != hash) {
+                const error = new Error('password fail');
+                error.status = 401;
+                throw error;
+            }
         })
         .then(() => {
             const p = new Promise((resolve, reject) => {
@@ -58,7 +66,7 @@ controller.login = function(req, res, next) {
     };
 
     const onError = error => {
-        res.json({
+        res.status(error.status).json({
             error: error.message,
         });
     };
@@ -82,7 +90,9 @@ controller.join = function (req, res, next) {
 
     const create = user => {
         if (user) {
-            throw new Error('username exists');
+            const error = new Error('username exists');
+            error.status = 401;
+            throw error;
         } else {
             return User.createUser(newUser);
         }
@@ -95,7 +105,7 @@ controller.join = function (req, res, next) {
     };
 
     const onError = error => {
-        res.json({
+        res.status(error.status).json({
             error: error.message,
         });
     };
