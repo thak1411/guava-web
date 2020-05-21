@@ -5,7 +5,7 @@ const auth = {
     checkUser: function (req, res, next) {
         const token = req.cookies[config.cookie.session];
         if (!token) {
-			const error = new Error("not logged in");
+			const error = new Error("Not Logged In");
 			error.status = 401;
 			return next(error);
         }
@@ -13,12 +13,12 @@ const auth = {
 			if (err) {
 				if (err.name === "TokenExpiredError") {
 					const error = new Error(err);
-					error.status = 9401;
+					error.status = 9000;
 					res.clearCookie(config.cookie.session);
 					return next(error);
 				} else {
 					const error = new Error(err);
-					error.status = 9401;
+					error.status = 9000;
 					return next(error);
 				}
 			}
