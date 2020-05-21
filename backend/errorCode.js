@@ -79,6 +79,20 @@ module.exports = {
             description: "Exist Username",
         },
     },
+    "1001": {
+        status: 400,
+        msg: {
+            내용: "유저 별명이 중복입니다.",
+            description: "Exist Nickname",
+        },
+    },
+    "1002": {
+        status: 400,
+        msg: {
+            내용: "유저 학번이 중복입니다.",
+            description: "Exist Student ID",
+        },
+    },
     "1010": {
         status: 400,
         msg: {

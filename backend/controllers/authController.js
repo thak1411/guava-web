@@ -136,6 +136,12 @@ controller.join = function(req, res, next) {
         .then(context => {
             return UserModel.checkUserName(context, { username: username });
         })
+        .then(context => {
+            return UserModel.checkStudentId(context, { student_id: student_id });
+        })
+        .then(context => {
+            return UserModel.checkNickName(context, { nickname: nickname });
+        })
         .then(create)
         .then(response)
         .catch(onError);

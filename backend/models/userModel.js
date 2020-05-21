@@ -25,7 +25,7 @@ function User({
 function checkUserName(context, { username }) {
     return new Promise(function(resolve, reject) {
         const queryString = `SELECT * FROM guava_user_table WHERE username=?`;
-        const queryValue  = [username];
+        const queryValue  = [ username ];
 
         context.connection.query(queryString, queryValue, function(err, rows) {
             if (err) {
@@ -68,6 +68,46 @@ function checkUser(context, { username }) {
             };
             return resolve(context);
         })
+    });
+}
+
+function checkNickName(context, { nickname }) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `SELECT * FROM guava_user_table WHERE nickname=?`;
+        const queryValue  = [ nickname ];
+
+        context.connection.query(queryString, queryValue, function(err, rows) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            } else if (rows.length > 0) {
+                const error = new Error("Exist Nickname");
+                error.status = 1001;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
+    });
+}
+
+function checkStudentId(context, { student_id }) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `SELECT * FROM guava_user_table WHERE student_id=?`;
+        const queryValue  = [ student_id ];
+
+        context.connection.query(queryString, queryValue, function(err, rows) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            } else if (rows.length > 0) {
+                const error = new Error("Exist Student ID");
+                error.status = 1002;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
     });
 }
 
@@ -116,5 +156,7 @@ module.exports = {
     checkUser,
     createUser,
     getAllUsers,
+    checkNickName,
     checkUserName,
+    checkStudentId,
 }
