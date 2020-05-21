@@ -11,14 +11,17 @@ const pool = mysql.createPool({
 });
 
 function getConnection() {
-    return new Promise(function(resolved, rejected) {
+    return new Promise(function(resolve, reject) {
         pool.getConnection(function(err, connection) {
+            const context = {
+                connection: connection,
+            };
             if (err) {
                 let error = new Error(err);
                 error.status = 500;
-                return rejected(error);
+                return reject({ context: context, error: error });
             }
-            return resolved({ connection: connection });
+            return resolve(context);
         });
     });
 }

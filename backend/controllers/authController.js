@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel.js');
+const UserModel = require('../models/userModel.js');
 const baseController = require('./baseController.js');
 
 let controller = new baseController({
@@ -11,18 +11,15 @@ const self = controller;
 
 controller.login = function(req, res, next) {
     const { username, password } = req.body;
-    const check = user => {
-        if (!user) {
-            const error = new Error('id fail');
-            error.status = 401;
-            throw error;
-        }
+
+    const check = context => {
+        const user = context.user;
         return bcrypt.hash(password, user.salt)
         .then(hash => {
             if (user.password != hash) {
                 const error = new Error('password fail');
-                error.status = 401;
-                throw error;
+                error.status = 1011;
+                return Promise.reject(error);
             }
         })
         .then(() => {
@@ -45,37 +42,45 @@ controller.login = function(req, res, next) {
                 }, (err, token) => {
                     if (err) {
                         const error = new Error(err);
-                        error.status = 401;
-                        reject(err);
+                        error.status = 500;
+                        return reject(err);
                     }
-                    resolve(token);
+                    context.token = token;
+                    return resolve(context);
                 });
             });
             return p;
         });
     };
 
-    const saveCookie = token => {
+    const saveCookie = context => {
+        const token = context.token;
         res.cookie(self.config.cookie.session, token, {
             domain: self.config.cookie.domain,
         });
-        return token;
+        return context;
     }
 
-    const response = token => {
+    const response = context => {
         res.json({
             message: 'success login',
-            token,
+            token: context.token,
         });
+        context.connection.release();
     };
 
     const onError = error => {
-        res.status(error.status || 500).json({
-            error: error.message,
-        });
+        if (error && error.context) {
+            error.context.connection.release();
+            return next(error.error);
+        }
+        return next(error);
     };
 
-    User.findUserByUsername(username)
+    self.db.getConnection()
+    .then(context => {
+        return UserModel.checkUser(context, { username: username });
+    })
     .then(check)
     .then(saveCookie)
     .then(response)
@@ -84,7 +89,7 @@ controller.login = function(req, res, next) {
 
 controller.join = function(req, res, next) {
     const { username, password, student_id, name, nickname } = req.body;
-    let newUser = new User.User({
+    let newUser = new UserModel.User({
         name,
         username,
         nickname,
@@ -92,26 +97,31 @@ controller.join = function(req, res, next) {
         student_id,
     });
 
-    const create = user => {
+    const create = context => {
+        const user = context.user;
+        console.log('create');
         if (user) {
-            const error = new Error('username exists');
-            error.status = 401;
-            throw error;
+            const error = new Error('Username Exists');
+            error.status = 500;
+            return Promise.reject(error);
         } else {
-            return User.createUser(newUser);
+            return UserModel.createUser(context, { user: newUser });
         }
     };
 
-    const response = () => {
+    const response = context => {
         res.json({
             message: 'registered successfully',
         });
+        context.connection.release();
     };
 
     const onError = error => {
-        res.status(error.status).json({
-            error: error.message,
-        });
+        if (error && error.context) {
+            error.context.connection.release();
+            return next(error.error);
+        }
+        return next(error);
     };
 
     bcrypt.genSalt(self.config.saltRound)
@@ -123,7 +133,10 @@ controller.join = function(req, res, next) {
         newUser.password = hash;
     })
     .then(() => {
-        User.findUserByUsername(username)
+        self.db.getConnection()
+        .then(context => {
+            return UserModel.checkUserName(context, { username: username });
+        })
         .then(create)
         .then(response)
         .catch(onError);

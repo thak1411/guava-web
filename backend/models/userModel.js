@@ -1,5 +1,3 @@
-const dbModel = require('./dbModel.js');
-
 function User({
     name = null,
     salt = null,
@@ -24,96 +22,100 @@ function User({
     }
 }
 
-function findUserByUsername(username) {
-    return new Promise(function(resolved, rejected) {
-        const search = context => {
-            context.connection.query(`SELECT * FROM guava_user_table WHERE username='${username}'`, function(err, row) {
-                context.connection.release();
-                if (err) {
-                    const error = new Error(err);
-                    error.status = 500;
-                    return rejected(error);
-                }
-                return resolved(row[0]);
-            });
-        };
+function checkUserName(context, { username }) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `SELECT * FROM guava_user_table WHERE username=?`;
+        const queryValue  = [username];
 
-        const onError = error => {
-            return rejected(error);
-        };
-
-        dbModel.getConnection()
-        .then(search)
-        .catch(onError);
+        context.connection.query(queryString, queryValue, function(err, rows) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            } else if (rows.length > 0) {
+                const error = new Error("Exist User");
+                error.status = 1000;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
     });
 }
 
-function getAllUserList() {
+function checkUser(context, { username }) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `SELECT * from guava_user_table WHERE username=?`;
+        const queryValue  = [ username ];
+        context.connection.query(queryString, queryValue, function(err, rows) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject(error);
+            } else if (rows.length == 0) {
+                const error = new Error('Login Fail');
+                error.status = 1010;
+                return reject(error);
+            }
+            console.log('rows:', rows[0]);
+            context.user = {
+                salt: rows[0].salt,
+                name: rows[0].name,
+                created: rows[0].created,
+                nickname: rows[0].nickname,
+                username: rows[0].username,
+                password: rows[0].password,
+                student_id: rows[0].student_id,
+                permission_level: rows[0].permission_level,
+            };
+            return resolve(context);
+        })
+    });
+}
+
+function getAllUsers(context) {
     return new Promise(function(resolved, rejected) {
         const queryString = `SELECT * from guava_user_table`;
-        const getList = context => {
-            context.connection.query(queryString, '', function(err, row) {
-                context.connection.release();
-                if (err) {
-                    const error = new Error(err);
-                    error.status = 500;
-                    return rejected(error);
-                }
-                return resolved({
-                    userList: row,
-                });
-            });
-        };
-        const onError = error => {
-            return rejected(error);
-        };
-        dbModel.getConnection()
-        .then(getList)
-        .catch(onError);
+        context.connection.query(queryString, '', function(err, rows) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return rejected({ context: context, error: error });
+            }
+            context.userList = rows;
+            return resolved(context);
+        });
     });
 }
 
-function createUser(user) {
-    return new Promise(function(resolved, rejected) {
-        const create = context => {
-            const queryString = `INSERT INTO guava_user_table SET
-                username = ?,
-                password = ?,
-                student_id = ?,
-                name = ?,
-                nickname = ?,
-                created = ?,
-                permission_level = ?,
-                salt = ?`;
+function createUser(context, { user }) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `INSERT INTO guava_user_table SET
+            username = ?,
+            password = ?,
+            student_id = ?,
+            name = ?,
+            nickname = ?,
+            created = ?,
+            permission_level = ?,
+            salt = ?`;
 
-            const queryValue = [user.username, user.password, user.student_id, user.name, user.nickname, user.created, user.permission_level, user.salt];
+        const queryValue = [user.username, user.password, user.student_id, user.name, user.nickname, user.created, user.permission_level, user.salt];
 
-            context.connection.query(queryString, queryValue, function(err, row) {
-                context.connection.release();
-                if (err) {
-                    const error = new Error(err);
-                    error.status = 500;
-                    return rejected(error);
-                }
-                return resolved({
-                    message: 'complete user create',
-                });
-            });
-        };
-        
-        const onError = error => {
-            return rejected(error);
-        };
-
-        dbModel.getConnection()
-        .then(create)
-        .catch(onError);
+        context.connection.query(queryString, queryValue, function(err, row) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
     });
 }
 
 module.exports = {
     User,
+    checkUser,
     createUser,
-    getAllUserList,
-    findUserByUsername,
+    getAllUsers,
+    checkUserName,
 }
