@@ -99,7 +99,6 @@ controller.join = function(req, res, next) {
 
     const create = context => {
         const user = context.user;
-        console.log('create');
         if (user) {
             const error = new Error('Username Exists');
             error.status = 500;

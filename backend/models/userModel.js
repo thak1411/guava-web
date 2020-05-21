@@ -56,7 +56,6 @@ function checkUser(context, { username }) {
                 error.status = 1010;
                 return reject(error);
             }
-            console.log('rows:', rows[0]);
             context.user = {
                 salt: rows[0].salt,
                 name: rows[0].name,
