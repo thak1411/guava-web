@@ -37,7 +37,7 @@ export default {
             .catch(e => {
                 switch (e.response.status) {
                 case 401: default:
-                    alert('로그인 실패');
+                    alert(this.$t('login.fail'));
                     break;
                 }
             });

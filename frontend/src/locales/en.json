@@ -21,7 +21,8 @@
         "title": "LOG IN",
         "username": "ID",
         "password": "PASSWORD",
-        "submit": "LOG IN"
+        "submit": "LOG IN",
+        "fail": "LOG IN FAIL"
     },
     "join": {
         "title": "SIGN UP",

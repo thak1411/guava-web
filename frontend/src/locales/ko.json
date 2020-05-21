@@ -21,7 +21,8 @@
         "title": "로그인",
         "username": "아이디 입력",
         "password": "비밀번호 입력",
-        "submit": "로그인"
+        "submit": "로그인",
+        "fail": "로그인 실패"
     },
     "join": {
         "title": "회원 가입",
