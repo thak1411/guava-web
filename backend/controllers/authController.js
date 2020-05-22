@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const utilModel = require('../models/utilModel.js');
 const UserModel = require('../models/userModel.js');
 const baseController = require('./baseController.js');
 
@@ -11,6 +12,18 @@ const self = controller;
 
 controller.login = function(req, res, next) {
     const { username, password } = req.body;
+
+    const validateItems  = [ username,  password  ];
+    const validateLength = [ [ 4, 16 ], [ 8, 16 ] ];
+    for (let i = 0; i < validateItems.length; ++i) {
+        const item = validateItems[i];
+        const length = validateLength[i];
+        if (!this.lengthCheck(item, length[0], length[1])) {
+            const error = new Error('Invalid Params');
+            error.status = 400;
+            return next(error);
+        }
+    }
 
     const check = context => {
         const user = context.user;
@@ -98,6 +111,18 @@ controller.join = function(req, res, next) {
         password,
         student_id,
     });
+
+    const validateItems  = [ username,  password,  name,      studentId,  nickname ];
+    const validateLength = [ [ 4, 16 ], [ 8, 16 ], [ 2, 16 ], [ 10, 10 ], [4, 16]  ];
+    for (let i = 0; i < validateItems.length; ++i) {
+        const item = validateItems[i];
+        const length = validateLength[i];
+        if (!this.lengthCheck(item, length[0], length[1])) {
+            const error = new Error('Invalid Params');
+            error.status = 400;
+            return next(error);
+        }
+    }
 
     const create = context => {
         const user = context.user;
