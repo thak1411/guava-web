@@ -64,11 +64,31 @@ export default {
                 student_id: this.studentId,
             })
             .then(res => {
-                alert(res.data.message);
-                window.location.href = '/';
+                switch(res.data.code) {
+                case 200:
+                    alert(this.$t('join.success'));
+                    window.location.href = '/';
+                    break;
+                default:
+                    alert(this.$t('join.fail'));
+                    break;
+                }
             })
             .catch(e => {
-                console.log('error: ', e);
+                switch (e.response.data.code) {
+                case 1000:
+                    alert(this.$t('join.exist-username'));
+                    break;
+                case 1001:
+                    alert(this.$t('join.exist-nickname'));
+                    break;
+                case 1002:
+                    alert(this.$t('join.exist-student-id'));
+                    break;
+                default:
+                    alert(this.$t('join.fail'));
+                    break;
+                }
             });
         },
     },

@@ -32,11 +32,18 @@ export default {
                 password: this.password,
             })
             .then(res => {
-                window.location.href = '/';
+                switch (res.data.code) {
+                case 200:
+                    window.location.href = '/';
+                    break;
+                default:
+                    alert('login.fail');
+                    break;
+                }
             })
             .catch(e => {
-                switch (e.response.status) {
-                case 401: default:
+                switch (e.response.data.code) {
+                default:
                     alert(this.$t('login.fail'));
                     break;
                 }
