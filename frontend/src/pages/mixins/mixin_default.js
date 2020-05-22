@@ -13,8 +13,12 @@ const mixin = {
         },
         getUserInfo: function() {
             const setData = res => {
-                res.data.login = true;
-                this.$store.commit('setUser', res.data);
+                switch (res.status) {
+                case 200:
+                    res.data.login = true;
+                    this.$store.commit('setUser', res.data);
+                    break;
+                }
             };
             const onError = error => {
                 // Not Login //
