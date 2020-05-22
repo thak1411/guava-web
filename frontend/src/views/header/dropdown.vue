@@ -1,16 +1,16 @@
 <template lang="pug">
-div.header-dropdown(:class="show ? '' : 'header-dropdown-hide'")
+div.header-dropdown(:class="($store.state.user.login ? 'h90' : 'h135') + (show ? ' ' : ' header-dropdown-hide')")
     ul
         li
             button(@click="onClickLang")
                 ctxt(:init_message="$t('header.dropdown.lang')" :init_fontSize="14" init_color="#000000")
-        li
+        li(v-if="!$store.state.user.login")
             button(@click="onClickLogin")
                 ctxt(:init_message="$t('header.dropdown.login')" :init_fontSize="14" init_color="#000000")
-        li
+        li(v-if="!$store.state.user.login")
             button(@click="onClickJoin")
                 ctxt(:init_message="$t('header.dropdown.join')" :init_fontSize="14" init_color="#000000")
-        li
+        li(v-if="$store.state.user.login")
             button(@click="onClickLogout")
                 ctxt(:init_message="$t('header.dropdown.logout')" :init_fontSize="14" init_color="#000000")
 </template>
@@ -58,8 +58,9 @@ export default {
 <style lang="scss" scoped>
 .header-dropdown {
     width: 100%;
-    height: 180px;
+    // height: 180px;
     position: absolute;
+    box-sizing: border-box;
     border: 1px solid #dedede;
     background-color: #ffffff;
     -webkit-transition: all .5s;
@@ -96,5 +97,11 @@ ul {
             }
         }
     }
+}
+.h90 {
+    height: 90px;
+}
+.h135 {
+    height: 135px;
 }
 </style>
