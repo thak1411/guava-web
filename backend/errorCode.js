@@ -33,6 +33,7 @@ module.exports = {
     "400": {
 		status: 400,
 		msg: {
+            code: 400,
 			내용: "잘못된 요청입니다.",
 			description: "Bad Request",
 		},
@@ -40,6 +41,7 @@ module.exports = {
 	"401": {
 		status: 401,
 		msg: {
+            code: 401,
 			내용: "로그인이 필요합니다.",
 			description: "False token",
 		},
@@ -47,6 +49,7 @@ module.exports = {
 	"403": {
 		status: 403,
 		msg: {
+            code: 403,
 			내용: "권한이 없습니다.",
 			description: "Not athorized",
 		},
@@ -54,6 +57,7 @@ module.exports = {
 	"404": {
 		status: 404,
 		msg: {
+            code: 404,
 			내용: "요청 페이지를 찾을 수 없습니다.",
 			description: "Not Found",
 		},
@@ -61,6 +65,7 @@ module.exports = {
 	"405": {
 		status: 405,
 		msg: {
+            code: 405,
 			내용: "잘못된 요청입니다.",
 			description: "Wrong Reqeust",
 		},
@@ -68,6 +73,7 @@ module.exports = {
 	"500": {
 		status: 500,
 		msg: {
+            code: 500,
 			내용: "내부 서버 오류",
 			description: "Internal Server Error",
 		},
@@ -75,6 +81,7 @@ module.exports = {
     "1000": {
         status: 400,
         msg: {
+            code: 1000,
             내용: "유저 이름이 중복입니다.",
             description: "Exist Username",
         },
@@ -82,6 +89,7 @@ module.exports = {
     "1001": {
         status: 400,
         msg: {
+            code: 1001,
             내용: "유저 별명이 중복입니다.",
             description: "Exist Nickname",
         },
@@ -89,6 +97,7 @@ module.exports = {
     "1002": {
         status: 400,
         msg: {
+            code: 1002,
             내용: "유저 학번이 중복입니다.",
             description: "Exist Student ID",
         },
@@ -96,6 +105,7 @@ module.exports = {
     "1010": {
         status: 400,
         msg: {
+            code: 1010,
             내용: "아이디가 없습니다.",
             description: "Not Found Username",
         },
@@ -103,6 +113,7 @@ module.exports = {
     "1011": {
         status: 400,
         msg: {
+            code: 1011,
             내용: "비밀번호가 틀립니다.",
             description: "Wrong Password",
         },
@@ -110,6 +121,7 @@ module.exports = {
     "9400": {
 		status: 401,
 		msg: {
+            code: 9400,
 			내용: "토큰이 유효하지 않거나 만료되었습니다.",
 			description: "False token",
 		},
