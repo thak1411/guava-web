@@ -62,9 +62,11 @@ controller.login = function(req, res, next) {
     }
 
     const response = context => {
-        res.json({
-            message: 'success login',
+        res.status(200).json({
+            code: 200,
             token: context.token,
+            내용: "로그인에 성공하였습니다.",
+            desciption: 'Login Successfully',
         });
         context.connection.release();
     };
@@ -109,8 +111,10 @@ controller.join = function(req, res, next) {
     };
 
     const response = context => {
-        res.json({
-            message: 'registered successfully',
+        res.status(200).json({
+            code: 200,
+            내용: "회원가입에 성공하였습니다.",
+            desciption: 'Registered Successfully',
         });
         context.connection.release();
     };

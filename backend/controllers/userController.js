@@ -7,7 +7,7 @@ let controller = new baseController({
 const self = controller;
 
 controller.info = function (req, res, next) {
-    return res.json({
+    return res.status(200).json({
         id: req.token.id,
         name: req.token.name,
         created: req.token.created,
