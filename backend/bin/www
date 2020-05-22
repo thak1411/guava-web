@@ -4,9 +4,12 @@
  * Module dependencies.
  */
 
+const fs = require('fs');
+const path = require('path');
 const app = require('../app');
 const debug = require('debug')('backend:server');
 const http = require('http');
+const https = require('https');
 const config = require('../config');
 
 
@@ -21,7 +24,17 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+let server;
+
+if (config.ssl_setting) {
+    const option = {
+        key: fs.readFileSync(path.join(__dirname, '../config/keys/private.pem')),
+        cert: fs.readFileSync(path.join(__dirname, '../config/keys/public.pem')),
+    };
+    server = https.createServer(option, app);
+} else {
+    server = http.createServer(app);
+}
 
 /**
  * Listen on provided port, on all network interfaces.

@@ -1,4 +1,4 @@
-*/.DS_Store
+.DS_Store
 */node_modules
 */dist
 
@@ -34,3 +34,6 @@ mysql-setup
 *.sql
 *.mwb
 *.bak
+
+# SSL file
+*.pem
