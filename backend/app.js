@@ -30,8 +30,10 @@ app.use('/', indexRouter);
 
 // error handler
 app.use(function(err, req, res, next) {
-    const error = errorCode[err.status];
-    res.status(error.status).json(error.msg);
+    console.log('err: ', err);
+    const error = errorCode[err.status || 500];
+    console.log('error: ', error);
+    res.status(error.status || 500).json(error.msg || 'Internal Server Error');
 });
 
 module.exports = app;

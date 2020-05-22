@@ -112,8 +112,8 @@ controller.join = function(req, res, next) {
         student_id,
     });
 
-    const validateItems  = [ username,  password,  name,      studentId,  nickname ];
-    const validateLength = [ [ 4, 16 ], [ 8, 16 ], [ 2, 16 ], [ 10, 10 ], [4, 16]  ];
+    const validateItems  = [ username,  password,  name,      student_id, nickname  ];
+    const validateLength = [ [ 4, 16 ], [ 8, 16 ], [ 2, 16 ], [ 10, 10 ], [ 4, 16 ]  ];
     for (let i = 0; i < validateItems.length; ++i) {
         const item = validateItems[i];
         const length = validateLength[i];
