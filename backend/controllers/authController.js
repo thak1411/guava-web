@@ -18,7 +18,7 @@ controller.login = function(req, res, next) {
     for (let i = 0; i < validateItems.length; ++i) {
         const item = validateItems[i];
         const length = validateLength[i];
-        if (!this.lengthCheck(item, length[0], length[1])) {
+        if (!utilModel.lengthCheck(item, length[0], length[1])) {
             const error = new Error('Invalid Params');
             error.status = 400;
             return next(error);
@@ -117,7 +117,7 @@ controller.join = function(req, res, next) {
     for (let i = 0; i < validateItems.length; ++i) {
         const item = validateItems[i];
         const length = validateLength[i];
-        if (!this.lengthCheck(item, length[0], length[1])) {
+        if (!utilModel.lengthCheck(item, length[0], length[1])) {
             const error = new Error('Invalid Params');
             error.status = 400;
             return next(error);

@@ -30,6 +30,7 @@ app.use('/', indexRouter);
 
 // error handler
 app.use(function(err, req, res, next) {
+    console.log(err);
     const error = errorCode[err.status];
     res.status(error.status).json(error.msg);
 });
