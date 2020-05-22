@@ -7,7 +7,7 @@ div.join-card
     input.card-input(type="password" v-model="cfmPassword" :placeholder="$t('join.confirm-password')" @keypress.enter="onSubmit" maxlength="16")
     div.seperate-line.mt10
     input.card-input(type="text" v-model="name" :placeholder="$t('join.name')" @keypress.enter="onSubmit" maxlength="16")
-    input.card-input(type="text" v-model="studentId" :placeholder="$t('join.student-id')" @keypress.enter="onSubmit" maxlength="16")
+    input.card-input(type="text" v-model="studentId" :placeholder="$t('join.student-id')" @keypress.enter="onSubmit" maxlength="10")
     input.card-input(type="text" v-model="nickname" :placeholder="$t('join.nickname')" @keypress.enter="onSubmit" maxlength="16")
     button.card-join(@click="onSubmit")
         ctxt(:init_message="$t('join.submit')" init_color="#ffffff" :init_fontSize="16")
@@ -35,7 +35,27 @@ export default {
         };
     },
     methods: {
+        lengthCheck: function(item, l, r) {
+            item = String(item);
+            return item.length >= l && item.length <= r;
+        },
         onSubmit: function() {
+            const validateItems  = [ this.username, this.password, this.name, this.studentId, this.nickname ];
+            const validateLength = [ [ 4, 16 ],     [ 8, 16 ],     [ 2, 16 ], [ 10, 10 ],     [4, 16]       ];
+            const invalidMessage = [ 'username',    'password',    'name',    'student-id',   'nickname'    ];
+            for (let i = 0; i < validateItems.length; ++i) {
+                const item = validateItems[i];
+                const length = validateLength[i];
+                const message = invalidMessage[i];
+                if (!this.lengthCheck(item, length[0], length[1])) {
+                    alert(this.$t([ 'join.', message, '_invalid' ].join('')));
+                    return;
+                }
+            }
+            if (this.password != this.cfmPassword) {
+                alert(this.$t('join.password_different'))
+                return;
+            }
             axios.post('/api/user/join', {
                 name: this.name,
                 username: this.username,
@@ -44,8 +64,8 @@ export default {
                 student_id: this.studentId,
             })
             .then(res => {
-                console.log(res);
                 alert(res.data.message);
+                window.location.href = '/';
             })
             .catch(e => {
                 console.log('error: ', e);
