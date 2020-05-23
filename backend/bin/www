@@ -29,7 +29,6 @@ let server;
 if (config.ssl_setting) {
     const options = {
         pfx: fs.readFileSync(path.join(__dirname, '../config/keys/certificate.pfx')),
-        passphrase: config.ssl_password,
       };
     server = https.createServer(options, app);
 } else {
