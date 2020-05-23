@@ -12,7 +12,7 @@ const indexRouter = require('./routes/index');
 const app = express();
 
 app.use((req, res, next) => {
-    if (!config.ssl_setting && !req.secure) {
+    if (config.ssl_setting && !req.secure) {
         res.redirect('https://' + req.get('Host') + req.url);
     }
     next();
