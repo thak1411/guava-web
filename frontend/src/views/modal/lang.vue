@@ -34,13 +34,13 @@ export default {
         };
     },
     created: function() {
+        const obj = this.$t('lang');
         this.langList = [];
-        this.selectedLang = this.langTitle = this.$cookie.get('lang') || 'ko';
-        for (let i in this.$t('lang')) {
-            console.log(i);
+        this.selectedLang = this.langTitle = obj[this.$cookie.get('lang') || 'ko'];
+        for (let i in obj) {
             this.langList.push({
                 key: i,
-                label: i,
+                label: obj[i],
             });
         }
     },
