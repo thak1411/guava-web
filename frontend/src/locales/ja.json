@@ -1,0 +1,37 @@
+{
+    "lang": {
+        "ko": "한국어",
+        "en": "English",
+        "ja": "日本語"
+    },
+    "title": "グアバ",
+    
+    "header": {
+        "menu": {
+            "join": "会員登録",
+            "introduction": "会員紹介"
+        },
+        "dropdown": {
+            "lang": "言語(Language)",
+            "join": "会員登録",
+            "login": "サインイン",
+            "logout": "サインアウト"
+        }
+    },
+    "login": {
+        "title": "サインイン",
+        "username": "ID入力",
+        "password": "パスワード入力",
+        "submit": "サインイン"
+    },
+    "join": {
+        "title": "会員登録",
+        "username": "ID入力",
+        "name": "名前入力",
+        "submit": "会員登録",
+        "password": "パスワード入力",
+        "nickname": "ニックネーム入力",
+        "student-id": "生徒番号",
+        "confirm-password": "パスワード再入力"
+    }
+}
