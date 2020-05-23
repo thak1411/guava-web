@@ -37,3 +37,6 @@ mysql-setup
 
 # SSL file
 *.pem
+*.pfx
+*.crt
+*.key

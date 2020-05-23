@@ -27,11 +27,11 @@ app.set('port', port);
 let server;
 
 if (config.ssl_setting) {
-    const option = {
-        key: fs.readFileSync(path.join(__dirname, '../config/keys/private.pem')),
-        cert: fs.readFileSync(path.join(__dirname, '../config/keys/public.pem')),
-    };
-    server = https.createServer(option, app);
+    const options = {
+        pfx: fs.readFileSync(path.join(__dirname, '../config/keys/certificate.pfx')),
+        passphrase: config.ssl_password,
+      };
+    server = https.createServer(options, app);
 } else {
     server = http.createServer(app);
 }
