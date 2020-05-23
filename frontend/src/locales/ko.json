@@ -50,5 +50,9 @@
         "lang": {
             "title": "언어 설정(Language)"
         }
+    },
+    "common": {
+        "save": "저장",
+        "cancel": "취소"
     }
 }

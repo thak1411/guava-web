@@ -7,9 +7,9 @@ block content
         ccombobox(:init_width="'100%'" init_height="43px" :init_title="langTitle" :init_items="langList" @selectItem="langClickEvent" :style="{ 'height': Util.mU(43) }")
     div.btn-slot
         button.modal-btn.modal-submit(@click="onSubmit")
-            ctxt(init_message="SUBMIT" :init_fontSize="14" :init_fontWeight="700" init_color="#ffffff")
+            ctxt(:init_message="$t('common.save')" :init_fontSize="14" :init_fontWeight="700" init_color="#ffffff")
         button.modal-btn.modal-cancel(@click="onCancel")
-            ctxt(init_message="CANCEL" :init_fontSize="14" :init_fontWeight="700" init_color="#ffffff")
+            ctxt(:init_message="$t('common.cancel')" :init_fontSize="14" :init_fontWeight="700" init_color="#ffffff")
 </template>
 
 <script>
