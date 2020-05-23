@@ -1,0 +1,18 @@
+.modal-content {
+    margin: auto;
+    display: flex;
+    padding: 25px;
+    position: relative;
+    border-radius: 8px;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: #ffffff;
+
+    .title-slot {
+        width: 100%;
+    }
+    .content-slot {
+        margin-top: 10px;
+        width: 100%;
+    }
+}

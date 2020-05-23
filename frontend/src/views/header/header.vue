@@ -14,7 +14,7 @@ header.guava-header(:style="style")
         button.user-btn(@click="() => { dToggle = !dToggle }")
             ctxt(v-if="$store.state.user.login" :init_message="$store.state.user.nickname" init_color="#000000" :init_fontSize="14")
             ctxt(v-else :init_message="$t('header.dropdown.login')" init_color="#000000" :init_fontSize="14")
-        dropdown(:init_show="dToggle")
+        dropdown(:init_show="dToggle" @click="onClose")
 </template>
 
 <script>
@@ -48,6 +48,9 @@ export default {
     methods: {
         onClick: function() {
             window.location.href = '/';
+        },
+        onClose: function() {
+            this.dToggle = false;
         },
     },
 }

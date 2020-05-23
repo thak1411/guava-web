@@ -3,23 +3,22 @@ div.index-root
     guava-header
     guava-section
     guava-footer
-    global-components
+    guava-modal
 </template>
 
 <script>
-import Util from '../../views/components/js/util.js';
+import GuavaModal from '../../views/modal/modal.vue';
 import GuavaHeader from '../../views/header/header.vue';
 import GuavaFooter from '../../views/footer/footer.vue';
 import GuavaSection from '../../views/section/index/section.vue';
-import GlobalComponents from '../../views/components/global-components.vue';
 
 export default {
     name: 'index-root',
     components: {
+        GuavaModal,
         GuavaHeader,
         GuavaFooter,
         GuavaSection,
-        GlobalComponents,
     },
 }
 </script>

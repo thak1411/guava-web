@@ -39,16 +39,23 @@ export default {
         };
     },
     methods: {
+        onClick: function() {
+            this.$emit('click');
+        },
         onClickLang: function() {
+            this.onClick();
             this.$store.commit('setModalType', 'lang');
         },
         onClickLogin: function() {
+            this.onClick();
             window.location.href = '/login';
         },
         onClickJoin: function() {
+            this.onClick();
             window.location.href = '/join';
         },
         onClickLogout: function() {
+            this.onClick();
             window.location.href = '/logout';
         },
     },

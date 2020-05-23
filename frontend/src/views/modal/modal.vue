@@ -1,6 +1,6 @@
 <template lang="pug">
-div.guava-modal(v-if="$store.state.modalType !== ''")
-    modal-lang(v-if="$store.state.ModalType === 'lang'")
+div.guava-modal(v-if="$store.state.modalType !== ''" @click.self="onClick")
+    modal-lang(v-if="$store.state.modalType === 'lang'" :init_width="300" :init_height="200")
 </template>
 
 <script>
@@ -11,6 +11,11 @@ export default {
     components: {
         ModalLang,
     },
+    methods: {
+        onClick: function() {
+            this.$store.commit('setModalType', '');
+        },
+    },
 }
 </script>
 
@@ -20,7 +25,8 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    position: absolute;
+    display: flex;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
