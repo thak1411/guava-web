@@ -11,6 +11,13 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+app.use((req, res, next) => {
+    if ((req.secure) && (req.protocol !== 'https')) {
+        res.redirect('https://' + req.get('Host') + req.url);
+    }
+    next();
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
 app.set('jwt-secret', config.jwt_secret);
