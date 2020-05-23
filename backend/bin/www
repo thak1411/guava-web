@@ -31,9 +31,6 @@ if (config.ssl_setting) {
         pfx: fs.readFileSync(path.join(__dirname, '../config/keys/certificate.pfx')),
     };
     server = https.createServer(options, app);
-    http.createServer((req, res, next) => {
-        res.redirect('https://www.guava-cse.tk');
-    }).listen(80);
 } else {
     server = http.createServer(app);
 }

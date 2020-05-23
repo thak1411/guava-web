@@ -4,12 +4,17 @@ const logger = require('morgan');
 const config = require('./config');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
 
 
 const errorCode = require('./errorCode.js');
 const indexRouter = require('./routes/index');
 
 const app = express();
+
+ 
+// Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
