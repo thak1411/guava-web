@@ -44,5 +44,10 @@
         "student-id_invalid": "학번의 길이는 10 ~ 10 사이여야 합니다.",
         "nickname_invalid": "닉네임의 길이는 4 ~ 16 사이여야 합니다.",
         "password_different": "입력한 두 비밀번호가 일치하지 않습니다."
+    },
+    "modal": {
+        "lang": {
+            "title": "언어 설정(Language)"
+        }
     }
 }

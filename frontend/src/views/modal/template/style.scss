@@ -12,7 +12,27 @@
         width: 100%;
     }
     .content-slot {
-        margin-top: 10px;
         width: 100%;
+        margin-top: 15px;
+    }
+    .btn-slot {
+        width: 100%;
+        margin-top: auto;
+        text-align: center;
+    }
+    .modal-btn {
+        width: 120px;
+        height: 40px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    .modal-submit {
+        background: #1fca4a;
+    }
+    .modal-cancel {
+        margin-left: 10px;
+        background: #ff7979;
     }
 }

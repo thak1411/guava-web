@@ -2,14 +2,31 @@ const axios = require('axios');
 
 const mixin = {
     created: function() {
-        this.getLang();
+        this.initCookie();
         this.getUserInfo();
     },
     methods: {
-        getLang: function() {
-            this.$i18n.locale = this.$cookie.get('lang') || 'ko';
-            let html_dom = document.querySelector('html');
-            html_dom.lang = this.$cookie.get('lang') || 'ko';
+        initCookie: function() {
+            axios.get('/api/cookie')
+            .then(res => {
+                switch (res.status) {
+                case 200: default:
+                    this.$store.commit('setCookie', res.data.cookie);
+                    break;
+                }
+            })
+            .then(() => {
+                if (!this.$cookie.get('lang')) {
+                    this.$cookie.set('lang', 'ko', {
+                        domain: this.$store.state.cookie.domain,
+                    });
+                }
+                this.$i18n.locale = this.$cookie.get('lang');
+                let html_dom = document.querySelector('html');
+                html_dom.lang = this.$cookie.get('lang');
+            })
+            .catch(err => {
+            });
         },
         getUserInfo: function() {
             const setData = res => {

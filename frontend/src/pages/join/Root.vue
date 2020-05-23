@@ -15,7 +15,7 @@ import JoinSection from '../../views/section/join/section.vue';
 export default {
     name: 'join-root',
     components: {
-        GuavaMolal,
+        GuavaModal,
         GuavaHeader,
         GuavaFooter,
         JoinSection,

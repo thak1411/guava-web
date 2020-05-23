@@ -56,6 +56,7 @@ export default {
         },
         onClickLogout: function() {
             this.onClick();
+            this.$store.commit('setUser', { login: false });
             window.location.href = '/logout';
         },
     },

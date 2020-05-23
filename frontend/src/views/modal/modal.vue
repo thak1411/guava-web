@@ -1,6 +1,6 @@
 <template lang="pug">
 div.guava-modal(v-if="$store.state.modalType !== ''" @click.self="onClick")
-    modal-lang(v-if="$store.state.modalType === 'lang'" :init_width="300" :init_height="200")
+    modal-lang(v-if="$store.state.modalType === 'lang'" :init_width="350" :init_height="200" @closeEvent="onClick")
 </template>
 
 <script>

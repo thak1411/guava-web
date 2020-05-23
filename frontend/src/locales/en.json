@@ -33,5 +33,10 @@
         "nickname": "NICKNAME",
         "student-id": "STUDENT ID",
         "confirm-password": "CONFIRM PASSWORD"
+    },
+    "modal": {
+        "lang": {
+            "title": "언어 설정(Language)"
+        }
     }
 }

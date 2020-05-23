@@ -13,6 +13,10 @@ export default new Vuex.Store({
             student_id: null,
             permission_level: null,
         },
+        cookie: {
+            session: null,
+            domain: null,
+        },
         colorMode: 'light',
         modalType: '',
     },
@@ -31,6 +35,11 @@ export default new Vuex.Store({
             state.user.nickname = nickname;
             state.user.student_id = student_id;
             state.user.permission_level = permission_level;
+        },
+        setCookie: function(state, payload) {
+            const { session, domain } = payload;
+            state.cookie.session = session;
+            state.cookie.domain = domain;
         },
     },
     actions: {
