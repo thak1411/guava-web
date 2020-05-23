@@ -11,18 +11,6 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
-app.use((req, res, next) => {
-    let protocol = req.headers['x-forwarded-proto'] || req.protocol;
-    if (!config.ssl_setting || protocol == 'https') {
-        next();
-    } else {
-        let from = `${protocol}://${req.get('Host')}${req.url}`;
-        let to = `https://${req.get('Host')}${req.url}`;
-        console.log(`[${req.method}]: ${from} -> ${to}`);
-        res.redirect(to);
-    }
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
 app.set('jwt-secret', config.jwt_secret);
