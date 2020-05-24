@@ -3,12 +3,24 @@ const apiRoutes = require('./api');
 const config = require('../config');
 const router = require('express').Router();
 const JwtValidator = require('../util/JwtValidator.js');
+const authMiddleware = require('../middlewares/authMiddleware.js');
 
 /**
  * <b> Get Home Page </b>
  */
 router.get('/', function(req, res, next) {
     res.sendfile(path.join(__dirname, '..', 'dist', 'index.html'));
+});
+
+/**
+ * <b> Get Admin Page </b>
+ */
+router.get('/admin', authMiddleware.checkUser, function(req, res, next) {
+    if (req.token.permission_level >= 9999) {
+        res.sendfile(path.join(__dirname, '..', 'dist', 'admin.html'));
+    } else {
+        res.redirect('/');
+    }
 });
 
 /**

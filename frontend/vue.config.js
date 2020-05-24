@@ -15,6 +15,11 @@ module.exports = {
             template: './public/index.html',
             filename: 'join.html',
         },
+        admin: {
+            entry: './src/pages/admin/main.js',
+            template: './public/index.html',
+            filename: 'admin.html',
+        }
     },
     outputDir: '../backend/dist',
     lintOnSave: false,

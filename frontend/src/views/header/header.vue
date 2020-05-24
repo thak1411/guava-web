@@ -8,8 +8,10 @@ header.guava-header(:style="style")
     div.nav-slot
         button.mr15.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.introduction')")
-        button.nav-btn
+        button.mr15.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.join')")
+        button.nav-btn(v-if="$store.state.user.permission_level >= 9999" @click="onClickAdmin")
+            ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.admin')")
     div.user-slot
         button.user-btn(@click="() => { dToggle = !dToggle }")
             ctxt(v-if="$store.state.user.login" :init_message="$store.state.user.nickname" init_color="#000000" :init_fontSize="14")
@@ -51,6 +53,9 @@ export default {
         },
         onClose: function() {
             this.dToggle = false;
+        },
+        onClickAdmin: function() {
+            window.location.href = '/admin';
         },
     },
 }

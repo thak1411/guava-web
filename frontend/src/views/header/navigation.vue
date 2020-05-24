@@ -8,6 +8,8 @@ div.navigation(:class="show ? '' : 'hide-navigation'" @click.self="onClick")
                 ctxt(:init_message="$t('header.menu.introduction')" :init_fontSize="14" init_color="#000000")
             button.nav-content-btn
                 ctxt(:init_message="$t('header.menu.join')" :init_fontSize="14" init_color="#000000")
+            button.nav-content-btn
+                ctxt(:init_message="$t('header.menu.admin')" :init_fontSize="14" init_color="#000000")
 </template>
 
 <script>

@@ -118,10 +118,10 @@ module.exports = {
             description: "Wrong Password",
         },
     },
-    "9400": {
+    "9000": {
 		status: 401,
 		msg: {
-            code: 9400,
+            code: 9000,
 			내용: "토큰이 유효하지 않거나 만료되었습니다.",
 			description: "False token",
 		},
