@@ -8,7 +8,7 @@ div.navigation(:class="show ? '' : 'hide-navigation'" @click.self="onClick")
                 ctxt(:init_message="$t('header.menu.introduction')" :init_fontSize="14" init_color="#000000")
             button.nav-content-btn
                 ctxt(:init_message="$t('header.menu.join')" :init_fontSize="14" init_color="#000000")
-            button.nav-content-btn
+            button.nav-content-btn(v-if="$store.state.user.permission_level >= 9999" @click="onClickAdmin")
                 ctxt(:init_message="$t('header.menu.admin')" :init_fontSize="14" init_color="#000000")
 </template>
 
@@ -38,6 +38,9 @@ export default {
     methods: {
         onClick: function() {
             this.$emit('click');
+        },
+        onClickAdmin: function() {
+            window.location.href = '/admin';
         },
     }
 }

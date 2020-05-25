@@ -30,6 +30,7 @@ controller.userList = function(req, res, next) {
         const resUser = [];
         for (let i = 0; i < context.userList.length; ++i) {
             resUser.push({
+                id: context.userList[i].id,
                 name: context.userList[i].name,
                 created: context.userList[i].created,
                 nickname: context.userList[i].nickname,
