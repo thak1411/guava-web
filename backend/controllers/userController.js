@@ -63,4 +63,38 @@ controller.userList = function(req, res, next) {
     .catch(onError);
 };
 
+controller.deleteUser = function(req, res, next) {
+    const { id } = req.query;
+    
+    if (req.token.permission_level < 9999) {
+        const error = new Error('Not athorized');
+        error.status = 403;
+        return next(error);
+    }
+    
+    const response = context => {
+        res.status(200).json({
+            code: 200,
+            내용: "유저를 삭제했습니다.",
+            desciption: 'Delete User Successfully',
+        });
+        context.connection.release();
+    };
+
+    const onError = error => {
+        if (error && error.context) {
+            error.context.connection.release();
+            return next(error.error);
+        }
+        return next(error);
+    };
+
+    self.db.getConnection()
+    .then(context => {
+        return userModel.deleteUser(context, id);
+    })
+    .then(response)
+    .catch(onError);
+};
+
 module.exports = controller;

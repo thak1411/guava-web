@@ -48,7 +48,10 @@
         "password_different": "입력한 두 비밀번호가 일치하지 않습니다."
     },
     "admin": {
-        "title": "어드민 페이지"
+        "title": "어드민 페이지",
+        "delete_confirm": "유저를 삭제하시겠습니까?",
+        "delete_success": "삭제에 성공했습니다.",
+        "delete_fail": "삭제에 실패했습니다."
     },
     "modal": {
         "lang": {

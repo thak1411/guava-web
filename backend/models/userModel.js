@@ -151,10 +151,28 @@ function createUser(context, { user }) {
     });
 }
 
+function deleteUser(context, id) {
+    return new Promise(function(resolve, reject) {
+        const queryString = `DELETE FROM guava_user_table WHERE id = ?`;
+
+        const queryValue = [ id ];
+
+        context.connection.query(queryString, queryValue, function(err, row) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
+    });
+}
+
 module.exports = {
     User,
     checkUser,
     createUser,
+    deleteUser,
     getAllUsers,
     checkNickName,
     checkUserName,

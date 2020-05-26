@@ -12,8 +12,10 @@ div.admin-card
                 td(v-for="(field, fkey) in userField" :key="fkey")
                     ctxt(:init_message="user[field]" init_color="#000000" :init_fontSize="16")
                 td(v-if="userList.length > 0")
-                    button(@click="onClickSelect(user)")
+                    button.mr10(@click="onClickSelect(user)")
                         ctxt(init_message="EDIT" init_color="#ffffff" :init_fontSize="16")
+                    button(@click="onClickDelete(key)")
+                        ctxt(init_message="DELETE" init_color="#ffffff" :init_fontSize="16")
     span.seperate-line.mt40
     table.mt40
         thead
@@ -31,9 +33,9 @@ div.admin-card
                 td(v-if="userList.length > 0" v-for="(field, fkey) in userEditField" :key="fkey")
                     input(:placeholder="field" v-model="selectedUser[field]")
                 td(v-if="userList.length > 0")
-                    button.mr10(@click="onClickEdit(key)")
+                    button.mr10(@click="onClickEdit")
                         ctxt(init_message="SAVE" init_color="#ffffff" :init_fontSize="16")
-                    button(@click="onClickDelete(key)")
+                    button(@click="onClickDelete(-1)")
                         ctxt(init_message="DELETE" init_color="#ffffff" :init_fontSize="16")
     
 </template>
@@ -56,22 +58,25 @@ export default {
         };
     },
     created: function() {
-        setTimeout(() => {
-            axios.get('/api/user/list')
-            .then(res => {
-                switch(res.data.code) {
-                case 200:
-                    this.userList = res.data.userList;
-                    this.onClickSelect(this.userList[0]);
-                    break;
-                }
-            })
-            .catch(err => {
-                window.location.href = '/';
-            });
-        });
+        this.setData();
     },
     methods: {
+        setData: function() {
+            setTimeout(() => {
+                axios.get('/api/user/list')
+                .then(res => {
+                    switch(res.data.code) {
+                    case 200:
+                        this.userList = res.data.userList;
+                        this.onClickSelect(this.userList[0]);
+                        break;
+                    }
+                })
+                .catch(err => {
+                    window.location.href = '/';
+                });
+            });
+        },
         onClickSelect: function(user) {
             this.selectedUser = {
                 id: user.id,
@@ -85,7 +90,33 @@ export default {
 
         },
         onClickDelete: function(idx) {
-            console.log(this.userList[idx].id);
+            const user = idx != -1 ? this.userList[idx] : this.selectedUser;
+            if (!confirm(user.name + ' ' + this.$t('admin.delete_confirm'))) {
+                return;
+            }
+            setTimeout(() => {
+                const params = {
+                    id: user.id,
+                };
+                axios.get('/api/user/delete', {
+                    params,
+                })
+                .then(res => {
+                    switch (res.data.code) {
+                    case 200:
+                        alert(this.$t('admin.delete_success'));
+                        this.setData();
+                        break;
+                    }
+                })
+                .catch(err => {
+                    switch (err.response.data.code) {
+                    case 400: default:
+                        alert(this.$t('admin.delete_fail'));
+                        break;
+                    }
+                });
+            }, 0);
         },
     },
 }
