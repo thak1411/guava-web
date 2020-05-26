@@ -31,7 +31,7 @@ div.admin-card
                 td(v-if="userList.length > 0")
                     ctxt(:init_message="selectedUser['id']" init_color="#000000" :init_fontSize="16")
                 td(v-if="userList.length > 0" v-for="(field, fkey) in userEditField" :key="fkey")
-                    input(:placeholder="field" v-model="selectedUser[field]")
+                    input(:placeholder="field" v-model="selectedUser[field]" :maxlength="maxLength[field]")
                 td(v-if="userList.length > 0")
                     button.mr10(@click="onClickEdit")
                         ctxt(init_message="SAVE" init_color="#ffffff" :init_fontSize="16")
@@ -55,6 +55,12 @@ export default {
             selectedUser: {},
             userEditField: [ 'name', 'student_id', 'nickname', 'permission_level' ],
             userField: [ 'id', 'name', 'student_id', 'nickname', 'permission_level', 'created' ],
+            maxLength: {
+                name: 16,
+                student_id: 10,
+                nickname: 16,
+                permission_level: 10,
+            },
         };
     },
     created: function() {
