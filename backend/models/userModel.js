@@ -151,7 +151,7 @@ function createUser(context, { user }) {
     });
 }
 
-function deleteUser(context, id) {
+function deleteUser(context, { id }) {
     return new Promise(function(resolve, reject) {
         const queryString = `DELETE FROM guava_user_table WHERE id = ?`;
 
@@ -168,8 +168,57 @@ function deleteUser(context, id) {
     });
 }
 
+function editUser(context, { id, user }) {
+    return new Promise(function(resolve, reject) {
+        let queryString = `UPDATE guava_user_table SET`;
+        let stringBuilder = [ ];
+        let queryValue = [ ];
+        if (user.name) {
+            stringBuilder.push(` name = ?`);
+            queryValue.push(user.name);
+        }
+        if (user.salt) {
+            stringBuilder.push(` salt = ?`);
+            queryValue.push(user.salt);
+        }
+        if (user.username) {
+            stringBuilder.push(` username = ?`);
+            queryValue.push(user.username);
+        }
+        if (user.nickname) {
+            stringBuilder.push(` nickname = ?`);
+            queryValue.push(user.nickname);
+        }
+        if (user.password) {
+            stringBuilder.push(` password = ?`);
+            queryValue.push(user.password);
+        }
+        if (user.student_id) {
+            stringBuilder.push(` student_id = ?`);
+            queryValue.push(user.student_id);
+        }
+        if (user.permission_level) {
+            stringBuilder.push(` permission_level = ?`);
+            queryValue.push(user.permission_level);
+        }
+        queryString += stringBuilder.join(',');
+        queryString += ` WHERE id = ?`;
+        queryValue.push(id);
+
+        context.connection.query(queryString, queryValue, function(err, row) {
+            if (err) {
+                const error = new Error(err);
+                error.status = 500;
+                return reject({ context: context, error: error });
+            }
+            return resolve(context);
+        });
+    });
+}
+
 module.exports = {
     User,
+    editUser,
     checkUser,
     createUser,
     deleteUser,

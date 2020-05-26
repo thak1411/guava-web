@@ -93,7 +93,24 @@ export default {
             };
         },
         onClickEdit: function() {
-
+            setTimeout(() => {
+                axios.post('/api/user/edit', this.selectedUser)
+                .then(res => {
+                    switch (res.data.code) {
+                    case 200:
+                        alert(this.$t('admin.edit_success'));
+                        this.setData();
+                        break;
+                    }
+                })
+                .catch(err => {
+                    switch (err.response.data.code) {
+                    case 400: default:
+                        alert(this.$t('admin.edit_fail'));
+                        break;
+                    }
+                });
+            }, 0);
         },
         onClickDelete: function(idx) {
             const user = idx != -1 ? this.userList[idx] : this.selectedUser;

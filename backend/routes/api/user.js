@@ -4,6 +4,7 @@ const authMiddleware = require('../../middlewares/authMiddleware.js');
 
 router.post('/user/join', api.auth.join);
 router.post('/user/login', api.auth.login);
+router.post('/user/edit', authMiddleware.checkUser, api.user.editUser);
 router.get('/user/info', authMiddleware.checkUser, api.user.info);
 router.get('/user/list', authMiddleware.checkUser, api.user.userList);
 router.get('/user/delete', authMiddleware.checkUser, api.user.deleteUser);

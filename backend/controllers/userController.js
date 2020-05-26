@@ -65,7 +65,7 @@ controller.userList = function(req, res, next) {
 
 controller.deleteUser = function(req, res, next) {
     const { id } = req.query;
-    
+
     if (req.token.permission_level < 9999) {
         const error = new Error('Not athorized');
         error.status = 403;
@@ -91,7 +91,48 @@ controller.deleteUser = function(req, res, next) {
 
     self.db.getConnection()
     .then(context => {
-        return userModel.deleteUser(context, id);
+        return userModel.deleteUser(context, { id });
+    })
+    .then(response)
+    .catch(onError);
+};
+
+controller.editUser = function(req, res, next) {
+    const { id, name, nickname, student_id, permission_level } = req.body;
+
+    const newUser = new userModel.User({
+        name,
+        nickname,
+        student_id,
+        permission_level,
+    });
+
+    if (req.token.permission_level < 9999) {
+        const error = new Error('Not athorized');
+        error.status = 403;
+        return next(error);
+    }
+    
+    const response = context => {
+        res.status(200).json({
+            code: 200,
+            내용: "유저 정보를 수정했습니다.",
+            desciption: 'Edit User Successfully',
+        });
+        context.connection.release();
+    };
+
+    const onError = error => {
+        if (error && error.context) {
+            error.context.connection.release();
+            return next(error.error);
+        }
+        return next(error);
+    };
+
+    self.db.getConnection()
+    .then(context => {
+        return userModel.editUser(context, { id: id, user: newUser });
     })
     .then(response)
     .catch(onError);
