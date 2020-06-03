@@ -71,4 +71,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+    font-family: NanumBarunGothicBold;
+    src: url(../../assets/fonts/NanumBarunGothicBold.ttf);
+}
+@font-face {
+    font-family: NanumBarunGothic;
+    src: url(../../assets/fonts/NanumBarunGothic.ttf);
+}
+@font-face {
+    font-family: NanumBarunGothicLight;
+    src: url(../../assets/fonts/NanumBarunGothicLight.ttf);
+}
+.ctxt {
+    word-break: keep-all;
+}
 </style>

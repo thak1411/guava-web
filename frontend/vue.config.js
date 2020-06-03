@@ -19,7 +19,12 @@ module.exports = {
             entry: './src/pages/admin/main.js',
             template: './public/index.html',
             filename: 'admin.html',
-        }
+        },
+        userlist: {
+            entry: './src/pages/userlist/main.js',
+            template: './public/index.html',
+            filename: 'userlist.html',
+        },
     },
     outputDir: '../backend/dist',
     lintOnSave: false,

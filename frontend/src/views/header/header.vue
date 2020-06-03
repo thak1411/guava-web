@@ -6,7 +6,7 @@ header.guava-header(:style="style")
     div.logo-slot
         img.logo(src="../../assets/img/logo.png" height="40" @click="onClick")
     div.nav-slot
-        button.mr15.nav-btn
+        button.mr15.nav-btn(@click="onClickUserList")
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.introduction')")
         button.mr15.nav-btn
             ctxt(:init_fontSize="14" init_color="#000000" :init_message="$t('header.menu.join')")
@@ -56,6 +56,9 @@ export default {
         },
         onClickAdmin: function() {
             window.location.href = '/admin';
+        },
+        onClickUserList: function() {
+            window.location.href = '/userlist';
         },
     },
 }

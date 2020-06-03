@@ -1,13 +1,35 @@
 <template lang="pug">
 section.index-section
-    div.main-slot
-        div.vertical-frame
-            img(src="../../../assets/img/guabono.png" height="400")
+    div.main-slot(v-if="status == 0")
+        ctxtb.fade-in(:init_message="$t('index.sub-title1')" :init_fontSize="50" init_fontFamily="NanumBarunGothic" :key="1")
+    div.main-slot(v-else-if="status == 1")
+        ctxtb.fade-in(:init_message="$t('index.sub-title2')" :init_fontSize="50" init_fontFamily="NanumBarunGothicLight" :key="2")
+    div.main-slot(v-else)
+        ctxtb.fade-in(:init_message="$t('index.sub-title1')" :init_fontSize="50" init_fontFamily="NanumBarunGothic" :key="3")
+        ctxtb.fade-in.mt20(:init_message="$t('index.sub-title2')" :init_fontSize="50" init_fontFamily="NanumBarunGothicLight" :key="4")
 </template>
 
 <script>
+import ctxtb from '../../components/ctxtb.vue';
+
 export default {
     name: 'index-section',
+    components: {
+        ctxtb,
+    },
+    data: function() {
+        return {
+            status: 0,
+        };
+    },
+    mounted: function() {
+        setTimeout(() => {
+            this.status += 1;
+        }, 2100);
+        setTimeout(() => {
+            this.status += 1;
+        }, 4200);
+    },
 }
 </script>
 
@@ -17,17 +39,26 @@ export default {
 }
 .main-slot {
     width: 100%;
-    height: 450px;
+    height: 700px;
+    padding-top: 250px;
+    text-align: center;
+    box-sizing: border-box;
     background-color: #ececec;
 }
-.vertical-frame {
-    width: 100%;
-    height: 100%;
-    display: table;
-    text-align: center;
-    span {
-        display: table-cell;
-        vertical-align: middle;
+.mt20 {
+    margin-top: 20px;
+}
+.fade-in {
+    animation: fade-in 2s;
+}
+@keyframes fade-in {
+    from {
+        padding-top: 50px;
+        opacity: 0;
+    }
+    to {
+        padding-top: 0px;
+        opacity: 1;
     }
 }
 </style>
