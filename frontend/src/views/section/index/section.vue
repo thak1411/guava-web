@@ -39,8 +39,8 @@ export default {
 }
 .main-slot {
     width: 100%;
-    height: 700px;
-    padding-top: 250px;
+    height: 550px;
+    padding-top: 200px;
     text-align: center;
     box-sizing: border-box;
     background-color: #ececec;
@@ -53,12 +53,12 @@ export default {
 }
 @keyframes fade-in {
     from {
-        padding-top: 50px;
         opacity: 0;
+        padding-top: 50px;
     }
     to {
-        padding-top: 0px;
         opacity: 1;
+        padding-top: 0px;
     }
 }
 </style>
