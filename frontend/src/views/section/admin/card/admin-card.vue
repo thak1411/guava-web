@@ -158,6 +158,7 @@ export default {
     width: calc(100% - 100px);
     border: 1px solid #ececec;
     table {
+        border-collapse: collapse;
         thead {
             tr {
                 height: 45px;

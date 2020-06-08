@@ -64,6 +64,13 @@
             "title": "언어 설정(Language)"
         }
     },
+    "userlist": {
+        "title": "멤버 소개",
+        "permission_level": "등급",
+        "name": "이름",
+        "nickname": "닉네임",
+        "student_id": "학번"
+    },
     "common": {
         "save": "저장",
         "cancel": "취소"
