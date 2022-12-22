@@ -15,7 +15,7 @@
     "express-http-to-https": "^1.1.4",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1"
